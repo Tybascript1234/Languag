@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <div id="google_translate_element"></div>
+    <script style="height: auto;" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+body {
+    position: static !important; /* إلغاء الـ position المضافة */
+    min-height: auto !important; /* إلغاء الـ min-height المضافة */
+    top: auto;
+    margin: 0;
+}
+        .VIpgJd-ZVi9od-l4eHX-hSRGPd {
+  display: none;
+}
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none
+}
+.VIpgJd-ZVi9od-aZ2wEe {
+  display: none;
+}
+.goog-te-gadget {
+  display: none;
+}
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
+  display: none;
+}
+/* CSS to hide Google Translate tooltip */
+#goog-gt-tt {
+  display: none !important;
+  visibility: hidden !important;
+  background-color: transparent !important; /* Ensure background remains transparent */
+}
+body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
+  background-color: #00000000;
+  box-shadow: none;
+}
+        .ripple-btn{
+    position: relative;
+    overflow: hidden;
+    transition: ease 0.1s;
+}
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #9a9a9a46;
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+}
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+.links-Translate {
+    display: flex;
+    align-items: center;
+    padding: 5px 7px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.Fy0Xbe {
+  margin-right: 6px;
+  background: url(image/flags.png) no-repeat 0 0;
+  background-size: 24px 3876px;
+  width: 22.7px;
+  height: 15.8px;
+  overflow: hidden;
+  border: solid 1px #0000000f;
+}
+.links-Translate-div {
+  overflow: hidden;
+  animation: gallery 0.2s ease forwards;
+  z-index: 50;
+  width: 210px;
+  font-size: 16px;
+  padding-top: 4px;
+  padding-bottom: 8px;
+  box-shadow: 0px 2px 7px #00000046, 0px 1px 1px #0000004f;
+  border-radius: 16px;
+  background-color: white;
+}
+.links-Translate-search {
+  transition: ease 0.2s;
+  display: flex;
+  align-items: center;
+  padding: 6px 1px;
+  /* background: aliceblue; */
+  outline: solid 1px #cccccc8a;
+  border-radius: 14px;
+  justify-content: right;
+  padding-right: 9px;
+  margin-bottom: 8px;
+  margin-right: 4px;
+  margin-left: 4px;
+}
+.links-Translate-search:hover {
+  outline: solid 1px #cccccc;
+}
+.links-Translate-search ion-icon {
+  margin: auto;
+  font-size: 17px;
+}
+.links-Translate-search input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 159px;
+}
+#translation_buttons {
+  max-height: 296px;
+  overflow-y: auto;
+  /* scrollbar-width: none; */
+}
+#translation_buttons::-webkit-scrollbar {
+  position: absolute;
+  width: 5px; /* عرض الشريط */
+}
+
+/* تخصيص مسار الشريط */
+#translation_buttons::-webkit-scrollbar-track {
+  background: #f1f1f100; /* لون الخلفية */
+  border-radius: 10px; /* زاوية دائرية */
+}
+
+/* تخصيص المقبض */
+#translation_buttons::-webkit-scrollbar-thumb {
+  background: #b8b8b800; /* لون المقبض */
+  border-radius: 10px; /* زاوية دائرية */
+}
+
+/* تغيير لون المقبض عند التمرير */
+#translation_buttons:hover::-webkit-scrollbar-thumb {
+  background: #c9c9c9;
+}
+
+/* تخصيص الشريط الأفقي */
+#translation_buttons::-webkit-scrollbar-horizontal {
+  height: 12px; /* ارتفاع الشريط */
+}
+/* ---- */
+.Translate-div {
+  border-radius: 0px 25px 25px 0px;
+  margin-right: 8px;
+  position: relative;
+  font-weight: 400;
+  width: 95%;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 37px;
+  padding: 0 8px;
+  background-color: #00000000;
+}
+.Translate-div .ripple {
+  background-color: #2f84d418;
+}
+.Translate-div:hover:before {
+  transition: ease 0.2s;
+  display: flex;
+  content: "";
+  position: absolute;
+  left: 0px;
+  padding: 10px 2px;
+  border-radius: 0px 14px 14px 0px;
+  background-color: #1884ff;
+}
+.Translate-div:active::before {
+  background-color: #066fe7;
+  padding: 7px 2px;
+}
+.Translate-div:hover {
+  background-color: #0084ff09;
+}
+.Translate-div:focus {
+  background-color: #0084ff09;
+}
+.Translate-div-tr:active .Translate-div-div-span {
+    background-color: #066fe7;
+    padding: 7px 2px;
+}
+.Translate-div-div-span {
+    transition: ease 0.2s;
+    position: absolute;
+    left: 0px;
+    padding: 10px 2px;
+    border-radius: 0px 14px 14px 0px;
+    background-color: #1884ff;
+}
+.Translate-div-tr {
+    font-weight: 400;
+    width: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 37px;
+    padding: 0 8px;
+    background-color: #0084ff09;
+}
+.Translate-div,.Translate-div-tr a {
+    color: #474e58;
+    font-size: 15px;
+}
+    </style>
+</head>
+<body>
+    <div class="links-Tran links-a">
+        <!-- <div class="links-Translate xox" id="toggleButtonss1" onclick="toggleDivA(event, 'bbb1')"><div id="language_background" class="Fy0Xbe" style="background-position: -1px -69px;" aria-hidden="true"></div><a id="selected_language" class="notranslate">English</a></div> -->
+        <!-- Translate -->
+            <div class="links-Translate-div dide xox" id="bbb1">
+              <div class="links-Translate-search" style="display: none;"><ion-icon name="search-outline"></ion-icon><input type="text" id="button_search_input" oninput="searchLanguage()"  placeholder="Search Translate"></div>
+                <div id="translation_buttons">
+                <button id="btn_en" onclick="selectLanguage('en')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -69px;" aria-hidden="true"></div><a>English</a></button>
+                <button id="btn_fr" onclick="selectLanguage('ar')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -52px;" aria-hidden="true"></div><a>Arabic</a></button>
+                <button id="btn_fr" onclick="selectLanguage('ur')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -2772px;" aria-hidden="true"></div><a>Urdu</a></button>
+                <button id="btn_fr" onclick="selectLanguage('tr')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -2126px;" aria-hidden="true"></div><a>Turkish</a></button>
+                <button id="btn_fr" onclick="selectLanguage('fr')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -324px;" aria-hidden="true"></div><a>French</a></button>
+                <button id="btn_fr" onclick="selectLanguage('ja')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -528px;" aria-hidden="true"></div><a>Japanese</a></button>
+                <button id="btn_fr" onclick="selectLanguage('zh-CN')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -1072px;" aria-hidden="true"></div><a>Chinese</a></button>
+                <button id="btn_fr" onclick="selectLanguage('ru')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -868px;" aria-hidden="true"></div><a>Russia</a></button>
+                <button id="btn_fr" onclick="selectLanguage('es')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -1480px;" aria-hidden="true"></div><a>Spanish</a></button>
+                
+                <div id="no_results_message" style="display:none;">No results found for "<span id="searched_query_display"></span>"</div>
+              </div>
+            </div>
+        </div>
+
+    <script>
+        // Initialize Google Translate Element
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en'
+    }, 'google_translate_element');
+}
+
+// Select language and update display based on the selected language
+function selectLanguage(langCode) {
+    var selectElement = document.querySelector('.goog-te-combo');
+    if (selectElement) {
+        selectElement.value = langCode;
+        selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
+
+        // Hide Google Translate tooltip on language selection
+        var tooltipElement = document.getElementById('google_translate_tooltip');
+        if (tooltipElement) {
+            tooltipElement.style.display = 'none';
+            tooltipElement.style.visibility = 'hidden';
+        }
+
+        // Update selected language display
+        var selectedLanguageDiv = document.getElementById('selected_language_display');
+        if (selectedLanguageDiv) {
+            selectedLanguageDiv.textContent = '' + getLanguageName(langCode);
+        }
+
+        // Update language background display
+        var languageBackground = document.getElementById('language_background_display');
+        if (languageBackground) {
+            languageBackground.style.backgroundPosition = '-1px -69px'; // Default position
+            switch (langCode) {
+                case 'ar':
+                    languageBackground.style.backgroundPosition = '-1px -52px';
+                    break;
+                case 'ur':
+                    languageBackground.style.backgroundPosition = '-1px -2772px';
+                    break;
+                case 'tr':
+                    languageBackground.style.backgroundPosition = '-1px -2126px';
+                    break;
+                case 'fr':
+                    languageBackground.style.backgroundPosition = '-1px -324px';
+                    break;
+                case 'ja':
+                    languageBackground.style.backgroundPosition = '-1px -528px';
+                    break;
+                case 'zh-CN':
+                    languageBackground.style.backgroundPosition = '-1px -1072px';
+                    break;
+                case 'ru':
+                    languageBackground.style.backgroundPosition = '-1px -868px';
+                    break;
+                case 'es':
+                    languageBackground.style.backgroundPosition = '-1px -1480px';
+                    break;
+                // Add more cases for other languages as needed
+            }
+        }
+    }
+}
+
+// Get the language name based on the language code
+function getLanguageName(langCode) {
+    switch (langCode) {
+        case 'en':
+            return 'English';
+        case 'ar':
+            return 'Arabic';
+        case 'ur':
+            return 'Urdu';
+        case 'tr':
+            return 'Turkish';
+        case 'fr':
+            return 'French';
+        case 'ja':
+            return 'Japanese';
+        case 'zh-CN':
+            return 'Chinese';
+        case 'ru':
+            return 'Russian';
+        case 'es':
+            return 'Spanish';
+        default:
+            return 'Unknown';
+    }
+}
+
+// On window load, initialize Google Translate and set up search functionality
+window.onload = function() {
+    setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
+
+    const searchInputField = document.getElementById('button_search_input');
+    const translationButtons = document.querySelectorAll('#translation_buttons_container .button-container button');
+    const noResultsMessageDiv = document.getElementById('no_results_message');
+    const searchQueryDisplay = document.getElementById('searched_query_display');
+
+    // Event listener for search input
+    searchInputField.addEventListener('input', function() {
+        const searchTerm = searchInputField.value.toLowerCase();
+        let hasResults = false;
+
+        // Loop through buttons and display/hide based on search term
+        translationButtons.forEach(button => {
+            const buttonName = button.getAttribute('data-name').toLowerCase();
+            if (buttonName.includes(searchTerm)) {
+                button.style.display = 'inline-block';
+                hasResults = true;
+            } else {
+                button.style.display = 'none';
+            }
+        });
+
+        // Handle display of no results message and button visibility
+        if (searchTerm === '') {
+            // If search is cleared, show all buttons and hide the no results div
+            translationButtons.forEach(button => {
+                button.style.display = 'inline-block';
+            });
+            noResultsMessageDiv.style.display = 'none';
+        } else if (!hasResults) {
+            // If no results found, display the no results div
+            noResultsMessageDiv.style.display = 'block';
+            searchQueryDisplay.textContent = searchTerm;
+        } else {
+            // Hide no results div if results are found
+            noResultsMessageDiv.style.display = 'none';
+        }
+    });
+};
+
+// متموج
+function createRipple(event) {
+    const button = event.currentTarget;
+    const ripple = document.createElement("span");
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+  
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = x + "px";
+    ripple.style.top = y + "px";
+  
+    ripple.classList.add("ripple");
+  
+    button.appendChild(ripple);
+  
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  }
+  // //////////////
+    </script>
+</body>
+</html>
