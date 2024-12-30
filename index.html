@@ -233,7 +233,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         </div>
     
 <script>
-            // Initialize Google Translate Element
+// Initialize Google Translate Element
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'en'
@@ -257,7 +257,7 @@ function selectLanguage(langCode) {
         // Update selected language display
         var selectedLanguageDiv = document.getElementById('selected_language_display');
         if (selectedLanguageDiv) {
-            selectedLanguageDiv.textContent = '' + getLanguageName(langCode);
+            selectedLanguageDiv.textContent = getLanguageName(langCode);
         }
 
         // Update language background display
@@ -289,7 +289,6 @@ function selectLanguage(langCode) {
                 case 'es':
                     languageBackground.style.backgroundPosition = '-1px -1480px';
                     break;
-                // Add more cases for other languages as needed
             }
         }
     }
@@ -321,50 +320,45 @@ function getLanguageName(langCode) {
     }
 }
 
-// On window load, initialize Google Translate and set up search functionality
-window.onload = function() {
-    setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
-
+// Search functionality for translation buttons
+function searchLanguage() {
     const searchInputField = document.getElementById('button_search_input');
-    const translationButtons = document.querySelectorAll('#translation_buttons_container .button-container button');
+    const translationButtons = document.querySelectorAll('#translation_buttons button');
     const noResultsMessageDiv = document.getElementById('no_results_message');
     const searchQueryDisplay = document.getElementById('searched_query_display');
 
-    // Event listener for search input
-    searchInputField.addEventListener('input', function() {
-        const searchTerm = searchInputField.value.toLowerCase();
-        let hasResults = false;
+    const searchTerm = searchInputField.value.toLowerCase();
+    let hasResults = false;
 
-        // Loop through buttons and display/hide based on search term
-        translationButtons.forEach(button => {
-            const buttonName = button.getAttribute('data-name').toLowerCase();
-            if (buttonName.includes(searchTerm)) {
-                button.style.display = 'inline-block';
-                hasResults = true;
-            } else {
-                button.style.display = 'none';
-            }
-        });
-
-        // Handle display of no results message and button visibility
-        if (searchTerm === '') {
-            // If search is cleared, show all buttons and hide the no results div
-            translationButtons.forEach(button => {
-                button.style.display = 'inline-block';
-            });
-            noResultsMessageDiv.style.display = 'none';
-        } else if (!hasResults) {
-            // If no results found, display the no results div
-            noResultsMessageDiv.style.display = 'block';
-            searchQueryDisplay.textContent = searchTerm;
+    // Loop through buttons and display/hide based on search term
+    translationButtons.forEach(button => {
+        const buttonName = button.textContent.toLowerCase();
+        if (buttonName.includes(searchTerm)) {
+            button.style.display = 'inline-block';
+            hasResults = true;
         } else {
-            // Hide no results div if results are found
-            noResultsMessageDiv.style.display = 'none';
+            button.style.display = 'none';
         }
     });
-};
 
-// متموج
+    // Handle display of no results message and button visibility
+    if (searchTerm === '') {
+        // If search is cleared, show all buttons and hide the no results div
+        translationButtons.forEach(button => {
+            button.style.display = 'inline-block';
+        });
+        noResultsMessageDiv.style.display = 'none';
+    } else if (!hasResults) {
+        // If no results found, display the no results div
+        noResultsMessageDiv.style.display = 'block';
+        searchQueryDisplay.textContent = searchTerm;
+    } else {
+        // Hide no results div if results are found
+        noResultsMessageDiv.style.display = 'none';
+    }
+}
+
+// Create ripple effect for buttons
 function createRipple(event) {
     const button = event.currentTarget;
     const ripple = document.createElement("span");
@@ -372,20 +366,28 @@ function createRipple(event) {
     const size = Math.max(rect.width, rect.height);
     const x = event.clientX - rect.left - size / 2;
     const y = event.clientY - rect.top - size / 2;
-  
+
     ripple.style.width = ripple.style.height = `${size}px`;
-    ripple.style.left = x + "px";
-    ripple.style.top = y + "px";
-  
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+
     ripple.classList.add("ripple");
-  
     button.appendChild(ripple);
-  
+
     setTimeout(() => {
-      ripple.remove();
+        ripple.remove();
     }, 600);
-  }
-  // //////////////
+}
+
+// Initialize functionality on page load
+window.onload = function () {
+    setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
+
+    const searchInputField = document.getElementById('button_search_input');
+    if (searchInputField) {
+        searchInputField.addEventListener('input', searchLanguage);
+    }
+};
 </script>
     
 </body>
