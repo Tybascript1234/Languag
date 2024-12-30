@@ -17,7 +17,7 @@
       const bodyContent = tempDiv.querySelector("body")?.innerHTML || content;
 
       // إدخال المحتوى إلى صفحة المستخدم
-      const targetContainer = document.getElementById("target-container");
+      const targetContainer = document.getElementById("target-container-1Ey12rwss");
       if (targetContainer) {
         targetContainer.innerHTML = bodyContent;
       }
