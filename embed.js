@@ -1,57 +1,59 @@
-(function () {
-  const fileURL = "https://tybascript1234.github.io/Languag/";
+document.addEventListener("DOMContentLoaded", async function () {
+  (function () {
+    const fileURL = "https://tybascript1234.github.io/Languag/";
 
-  // تحميل ملف HTML
-  fetch(fileURL)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to load the file");
-      }
-      return response.text();
-    })
-    .then((content) => {
-      const tempDiv = document.createElement("div");
-      tempDiv.innerHTML = content;
-
-      const scripts = tempDiv.querySelectorAll("script");
-      const bodyContent = tempDiv.querySelector("body")?.innerHTML || content;
-
-      // إدخال المحتوى إلى صفحة المستخدم
-      const targetContainer = document.getElementById("target-container");
-      if (targetContainer) {
-        targetContainer.innerHTML = bodyContent;
-      }
-
-      // تشغيل السكربتات
-      scripts.forEach((script) => {
-        const newScript = document.createElement("script");
-        if (script.src) {
-          newScript.src = script.src;
-        } else {
-          newScript.textContent = script.textContent;
+    // تحميل ملف HTML
+    fetch(fileURL)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load the file");
         }
-        document.body.appendChild(newScript);
-      });
+        return response.text();
+      })
+      .then((content) => {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = content;
 
-      // تأكد من تحميل مكتبة Google Translate
-      ensureGoogleTranslateLoaded();
-    })
-    .catch((error) => console.error("Error loading the file:", error));
+        const scripts = tempDiv.querySelectorAll("script");
+        const bodyContent = tempDiv.querySelector("body")?.innerHTML || content;
 
-  function ensureGoogleTranslateLoaded() {
-    // حاول التأكد من تحميل العنصر
-    const interval = setInterval(() => {
-      const translateElement = document.querySelector(".goog-te-combo");
-      if (translateElement) {
+        // إدخال المحتوى إلى صفحة المستخدم
+        const targetContainer = document.getElementById("target-container");
+        if (targetContainer) {
+          targetContainer.innerHTML = bodyContent;
+        }
+
+        // تشغيل السكربتات
+        scripts.forEach((script) => {
+          const newScript = document.createElement("script");
+          if (script.src) {
+            newScript.src = script.src;
+          } else {
+            newScript.textContent = script.textContent;
+          }
+          document.body.appendChild(newScript);
+        });
+
+        // تأكد من تحميل مكتبة Google Translate
+        ensureGoogleTranslateLoaded();
+      })
+      .catch((error) => console.error("Error loading the file:", error));
+
+    function ensureGoogleTranslateLoaded() {
+      // حاول التأكد من تحميل العنصر
+      const interval = setInterval(() => {
+        const translateElement = document.querySelector(".goog-te-combo");
+        if (translateElement) {
+          clearInterval(interval);
+          console.log("Google Translate is ready.");
+        }
+      }, 100);
+
+      // بعد مدة محددة، إذا لم يتم العثور على العنصر، أبلغ عن خطأ
+      setTimeout(() => {
         clearInterval(interval);
-        console.log("Google Translate is ready.");
-      }
-    }, 100);
-
-    // بعد مدة محددة، إذا لم يتم العثور على العنصر، أبلغ عن خطأ
-    setTimeout(() => {
-      clearInterval(interval);
-      console.error("Google Translate did not load in time.");
-    }, 5000);
-  }
+        console.error("Google Translate did not load in time.");
+      }, 5000);
+    }
+  })();
 })();
