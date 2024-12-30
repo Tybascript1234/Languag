@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", async function () {
   (function () {
     const fileURL = "https://tybascript1234.github.io/Languag/";
 
@@ -56,4 +55,3 @@ document.addEventListener("DOMContentLoaded", async function () {
       }, 5000);
     }
   })();
-})();
