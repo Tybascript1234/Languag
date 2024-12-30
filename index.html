@@ -283,7 +283,6 @@ function selectLanguage(langCode) {
         // Update language background display
         var languageBackground = document.getElementById('language_background_display');
         if (languageBackground) {
-            languageBackground.style.backgroundColor = 'rgb(194, 231, 255)'; // New background color for selected language
             languageBackground.style.backgroundPosition = '-1px -69px'; // Default position
             switch (langCode) {
                 case 'ar':
@@ -312,9 +311,6 @@ function selectLanguage(langCode) {
                     break;
             }
         }
-
-        // Save the selected language to localStorage
-        localStorage.setItem('selectedLanguage', langCode);
     }
 }
 
@@ -345,14 +341,6 @@ function getLanguageName(langCode) {
             return 'Malay';
         default:
             return 'Unknown';
-    }
-}
-
-// Load the saved language from localStorage
-function loadSavedLanguage() {
-    const savedLangCode = localStorage.getItem('selectedLanguage');
-    if (savedLangCode) {
-        selectLanguage(savedLangCode); // Apply the saved language
     }
 }
 
@@ -415,17 +403,29 @@ function searchLanguage() {
     }
 }
 
+// Save selected language to localStorage and apply background color
+function saveLanguageSelection(langCode) {
+    localStorage.setItem('selectedLanguage', langCode);
+    document.body.style.backgroundColor = 'rgb(194, 231, 255)'; // Apply background color
+}
+
+// Apply previously selected language on page load
+function applySavedLanguage() {
+    const savedLangCode = localStorage.getItem('selectedLanguage');
+    if (savedLangCode) {
+        selectLanguage(savedLangCode);
+    }
+}
+
 // Initialize functionality on page load
 document.defaultView.onload = function () {
     setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
 
+    applySavedLanguage(); // Apply previously saved language
     const searchInputField = document.getElementById('button_search_input');
     if (searchInputField) {
         searchInputField.addEventListener('input', searchLanguage);
     }
-
-    // Load saved language from localStorage
-    loadSavedLanguage();
 };
 
 </script>
