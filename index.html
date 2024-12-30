@@ -334,7 +334,7 @@ function searchLanguage() {
     translationButtons.forEach(button => {
         const buttonName = button.textContent.toLowerCase();
         if (buttonName.includes(searchTerm)) {
-            button.style.display = 'inline-block';
+            button.style.display = 'flex';
             hasResults = true;
         } else {
             button.style.display = 'none';
@@ -345,7 +345,7 @@ function searchLanguage() {
     if (searchTerm === '') {
         // If search is cleared, show all buttons and hide the no results div
         translationButtons.forEach(button => {
-            button.style.display = 'inline-block';
+            button.style.display = 'flex';
         });
         noResultsMessageDiv.style.display = 'none';
     } else if (!hasResults) {
