@@ -223,11 +223,13 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
                 <button id="btn_fr" onclick="selectLanguage('ur')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -2772px;" aria-hidden="true"></div><a>Urdu</a></button>
                 <button id="btn_fr" onclick="selectLanguage('tr')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -2126px;" aria-hidden="true"></div><a>Turkish</a></button>
                 <button id="btn_fr" onclick="selectLanguage('fr')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -324px;" aria-hidden="true"></div><a>French</a></button>
+                <button id="btn_fr" onclick="selectLanguage('ko')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -3078px;" aria-hidden="true"></div><a>Korea</a></button>
                 <button id="btn_fr" onclick="selectLanguage('ja')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -528px;" aria-hidden="true"></div><a>Japanese</a></button>
                 <button id="btn_fr" onclick="selectLanguage('zh-CN')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -1072px;" aria-hidden="true"></div><a>Chinese</a></button>
                 <button id="btn_fr" onclick="selectLanguage('ru')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -868px;" aria-hidden="true"></div><a>Russia</a></button>
                 <button id="btn_fr" onclick="selectLanguage('es')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -1480px;" aria-hidden="true"></div><a>Spanish</a></button>
-                
+                <button id="btn_fr" onclick="selectLanguage('ms')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)"><div class="Fy0Xbe" style="background-position: -1px -2517px;" aria-hidden="true"></div><a>Malaysia</a></button>
+                    
                 <div id="no_results_message" style="display:none;">No results found for "<span id="searched_query_display"></span>"</div>
               </div>
             </div>
@@ -298,7 +300,7 @@ function selectLanguage(langCode) {
 // Get the language name based on the language code
 function getLanguageName(langCode) {
     switch (langCode) {
-        case 'en':
+  case 'en':
             return 'English';
         case 'ar':
             return 'Arabic';
@@ -316,6 +318,10 @@ function getLanguageName(langCode) {
             return 'Russian';
         case 'es':
             return 'Spanish';
+        case 'ko':
+            return 'Korean';
+        case 'ms':
+            return 'Malay';
         default:
             return 'Unknown';
     }
