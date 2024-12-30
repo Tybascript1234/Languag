@@ -88,6 +88,8 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
   background-color: white;
 }
 .links-Translate-search {
+  position: relative;
+  justify-content: left;
   transition: ease 0.2s;
   display: flex;
   align-items: center;
@@ -95,7 +97,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
   /* background: aliceblue; */
   outline: solid 1px #cccccc8a;
   border-radius: 14px;
-  justify-content: right;
+  /* justify-content: right; */
   padding-right: 9px;
   margin-bottom: 8px;
   margin-right: 4px;
@@ -105,16 +107,28 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
   outline: solid 1px #cccccc;
 }
 .links-Translate-search svg {
-  margin: auto;
+  margin: 0px 10px;
   width: 14px;
   height: 14px;
   opacity: .9;
 }
 .links-Translate-search input {
+  transition: ease 0.2s;
+  z-index: 4;
   border: none;
   outline: none;
   font-size: 14px;
   width: 159px;
+  border-radius: 15px;
+  position: absolute;
+  left: 0;
+  background: #0000;
+  height: -webkit-fill-available;
+  padding-left: 34px;
+  width: -webkit-fill-available;
+}
+.links-Translate-search input:focus {
+  box-shadow: 0 0 0 1px #1884ff;
 }
 #translation_buttons {
   max-height: 296px;
