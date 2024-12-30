@@ -253,175 +253,124 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         </div>
     
 <script>
-// Initialize Google Translate Element
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'en'
-    }, 'google_translate_element');
-}
+ // Function to apply ripple effect
+    function createRipple(event) {
+        const button = event.currentTarget;
+        const ripple = document.createElement("span");
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = event.clientX - rect.left - size / 2;
+        const y = event.clientY - rect.top - size / 2;
 
-// Select language and update display based on the selected language
-function selectLanguage(langCode) {
-    var selectElement = document.querySelector('.goog-te-combo');
-    if (selectElement) {
-        selectElement.value = langCode;
-        selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
 
-        // Hide Google Translate tooltip on language selection
-        var tooltipElement = document.getElementById('google_translate_tooltip');
-        if (tooltipElement) {
-            tooltipElement.style.display = 'none';
-            tooltipElement.style.visibility = 'hidden';
-        }
+        ripple.classList.add("ripple");
+        button.appendChild(ripple);
 
-        // Update selected language display
-        var selectedLanguageDiv = document.getElementById('selected_language_display');
-        if (selectedLanguageDiv) {
-            selectedLanguageDiv.textContent = getLanguageName(langCode);
-        }
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    }
 
-        // Update language background display
-        var languageBackground = document.getElementById('language_background_display');
-        if (languageBackground) {
-            languageBackground.style.backgroundPosition = '-1px -69px'; // Default position
-            switch (langCode) {
-                case 'ar':
-                    languageBackground.style.backgroundPosition = '-1px -52px';
-                    break;
-                case 'ur':
-                    languageBackground.style.backgroundPosition = '-1px -2772px';
-                    break;
-                case 'tr':
-                    languageBackground.style.backgroundPosition = '-1px -2126px';
-                    break;
-                case 'fr':
-                    languageBackground.style.backgroundPosition = '-1px -324px';
-                    break;
-                case 'ja':
-                    languageBackground.style.backgroundPosition = '-1px -528px';
-                    break;
-                case 'zh-CN':
-                    languageBackground.style.backgroundPosition = '-1px -1072px';
-                    break;
-                case 'ru':
-                    languageBackground.style.backgroundPosition = '-1px -868px';
-                    break;
-                case 'es':
-                    languageBackground.style.backgroundPosition = '-1px -1480px';
-                    break;
-            }
-        }
-
-        // Save the selected language to localStorage
+    // Store the selected language in localStorage
+    function selectLanguage(langCode) {
         localStorage.setItem('selectedLanguage', langCode);
-        document.body.style.background = 'rgb(194 231 255)'; // Change background color
+
+        // Highlight the selected button
+        const buttons = document.querySelectorAll('#translation_buttons .Translate-div');
+        buttons.forEach(button => button.style.backgroundColor = '');
+        document.getElementById(`btn_${langCode}`).style.backgroundColor = 'rgb(194 231 255)';
+
+        // Update language display
+        document.getElementById('selected_language_display').textContent = getLanguageName(langCode);
+
+        // Call Google Translate if Google Translate widget is present
+        const selectElement = document.querySelector('.goog-te-combo');
+        if (selectElement) {
+            selectElement.value = langCode;
+            selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
+        }
+
+        // Update the background position for the language icon
+        const languageBackground = document.getElementById('language_background_display');
+        if (languageBackground) {
+            languageBackground.style.backgroundPosition = getBackgroundPosition(langCode);
+        }
     }
-}
 
-// Get the language name based on the language code
-function getLanguageName(langCode) {
-    switch (langCode) {
-        case 'en':
-            return 'English';
-        case 'ar':
-            return 'Arabic';
-        case 'ur':
-            return 'Urdu';
-        case 'tr':
-            return 'Turkish';
-        case 'fr':
-            return 'French';
-        case 'ja':
-            return 'Japanese';
-        case 'zh-CN':
-            return 'Chinese';
-        case 'ru':
-            return 'Russian';
-        case 'es':
-            return 'Spanish';
-        case 'ko':
-            return 'Korean';
-        case 'ms':
-            return 'Malay';
-        default:
-            return 'Unknown';
+    // Get the language name based on the language code
+    function getLanguageName(langCode) {
+        switch (langCode) {
+            case 'en': return 'English';
+            case 'ar': return 'Arabic';
+            case 'ur': return 'Urdu';
+            case 'tr': return 'Turkish';
+            case 'fr': return 'French';
+            case 'ja': return 'Japanese';
+            case 'zh-CN': return 'Chinese';
+            case 'ru': return 'Russian';
+            case 'es': return 'Spanish';
+            case 'ko': return 'Korean';
+            case 'ms': return 'Malay';
+            default: return 'Unknown';
+        }
     }
-}
 
-// Create ripple effect for buttons
-function createRipple(event) {
-    const button = event.currentTarget;
-    const ripple = document.createElement("span");
-    const rect = button.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height);
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
+    // Get background position based on language code
+    function getBackgroundPosition(langCode) {
+        switch (langCode) {
+            case 'ar': return '-1px -52px';
+            case 'ur': return '-1px -2772px';
+            case 'tr': return '-1px -2126px';
+            case 'fr': return '-1px -324px';
+            case 'ja': return '-1px -528px';
+            case 'zh-CN': return '-1px -1072px';
+            case 'ru': return '-1px -868px';
+            case 'es': return '-1px -1480px';
+            default: return '-1px -69px';
+        }
+    }
 
-    ripple.style.width = ripple.style.height = `${size}px`;
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
+    // Search functionality for translation buttons
+    function searchLanguage() {
+        const searchInputField = document.getElementById('button_search_input');
+        const translationButtons = document.querySelectorAll('#translation_buttons button');
+        const noResultsMessageDiv = document.getElementById('no_results_message');
+        const searchQueryDisplay = document.getElementById('searched_query_display');
 
-    ripple.classList.add("ripple");
-    button.appendChild(ripple);
+        const searchTerm = searchInputField.value.toLowerCase();
+        let hasResults = false;
 
-    setTimeout(() => {
-        ripple.remove();
-    }, 600);
-}
+        translationButtons.forEach(button => {
+            const buttonName = button.textContent.toLowerCase();
+            if (buttonName.includes(searchTerm)) {
+                button.style.display = 'flex';
+                hasResults = true;
+            } else {
+                button.style.display = 'none';
+            }
+        });
 
-// Search functionality for translation buttons
-function searchLanguage() {
-    const searchInputField = document.getElementById('button_search_input');
-    const translationButtons = document.querySelectorAll('#translation_buttons button');
-    const noResultsMessageDiv = document.getElementById('no_results_message');
-    const searchQueryDisplay = document.getElementById('searched_query_display');
-
-    const searchTerm = searchInputField.value.toLowerCase();
-    let hasResults = false;
-
-    // Loop through buttons and display/hide based on search term
-    translationButtons.forEach(button => {
-        const buttonName = button.textContent.toLowerCase();
-        if (buttonName.includes(searchTerm)) {
-            button.style.display = 'flex';
-            hasResults = true;
+        if (searchTerm === '') {
+            translationButtons.forEach(button => button.style.display = 'flex');
+            noResultsMessageDiv.style.display = 'none';
+        } else if (!hasResults) {
+            noResultsMessageDiv.style.display = 'block';
+            searchQueryDisplay.textContent = searchTerm;
         } else {
-            button.style.display = 'none';
+            noResultsMessageDiv.style.display = 'none';
+        }
+    }
+
+    // Load the stored language from localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectedLanguage = localStorage.getItem('selectedLanguage');
+        if (selectedLanguage) {
+            selectLanguage(selectedLanguage);
         }
     });
-
-    // Handle display of no results message and button visibility
-    if (searchTerm === '') {
-        // If search is cleared, show all buttons and hide the no results div
-        translationButtons.forEach(button => {
-            button.style.display = 'flex';
-        });
-        noResultsMessageDiv.style.display = 'none';
-    } else if (!hasResults) {
-        // If no results found, display the no results div
-        noResultsMessageDiv.style.display = 'block';
-        searchQueryDisplay.textContent = searchTerm;
-    } else {
-        // Hide no results div if results are found
-        noResultsMessageDiv.style.display = 'none';
-    }
-}
-
-// Initialize functionality on page load
-document.defaultView.onload = function () {
-    setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
-
-    const searchInputField = document.getElementById('button_search_input');
-    if (searchInputField) {
-        searchInputField.addEventListener('input', searchLanguage);
-    }
-
-    // Retrieve the selected language from localStorage
-    const selectedLanguage = localStorage.getItem('selectedLanguage');
-    if (selectedLanguage) {
-        selectLanguage(selectedLanguage);
-    }
-};
     
 </script>
     
