@@ -283,6 +283,7 @@ function selectLanguage(langCode) {
         // Update language background display
         var languageBackground = document.getElementById('language_background_display');
         if (languageBackground) {
+            languageBackground.style.backgroundColor = 'rgb(194, 231, 255)'; // New background color for selected language
             languageBackground.style.backgroundPosition = '-1px -69px'; // Default position
             switch (langCode) {
                 case 'ar':
@@ -311,13 +312,16 @@ function selectLanguage(langCode) {
                     break;
             }
         }
+
+        // Save the selected language to localStorage
+        localStorage.setItem('selectedLanguage', langCode);
     }
 }
 
 // Get the language name based on the language code
 function getLanguageName(langCode) {
     switch (langCode) {
-  case 'en':
+        case 'en':
             return 'English';
         case 'ar':
             return 'Arabic';
@@ -344,7 +348,15 @@ function getLanguageName(langCode) {
     }
 }
 
-                // Create ripple effect for buttons
+// Load the saved language from localStorage
+function loadSavedLanguage() {
+    const savedLangCode = localStorage.getItem('selectedLanguage');
+    if (savedLangCode) {
+        selectLanguage(savedLangCode); // Apply the saved language
+    }
+}
+
+// Create ripple effect for buttons
 function createRipple(event) {
     const button = event.currentTarget;
     const ripple = document.createElement("span");
@@ -411,8 +423,10 @@ document.defaultView.onload = function () {
     if (searchInputField) {
         searchInputField.addEventListener('input', searchLanguage);
     }
-};
 
+    // Load saved language from localStorage
+    loadSavedLanguage();
+};
 
 </script>
     
