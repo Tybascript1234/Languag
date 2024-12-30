@@ -253,14 +253,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         </div>
     
 <script>
- // Function to initialize Google Translate Element
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'en'
-    }, 'google_translate_element');
-}
-
-// Select language and update display based on the selected language
+// Function to select language and update display
 function selectLanguage(langCode) {
     var selectElement = document.querySelector('.goog-te-combo');
     if (selectElement) {
@@ -311,12 +304,18 @@ function selectLanguage(langCode) {
                     break;
             }
         }
-    }
 
-    // Change button background color after selection
-    var selectedButton = document.querySelector(`button[onclick*="selectLanguage('${langCode}')"]`);
-    if (selectedButton) {
-        selectedButton.style.backgroundColor = 'rgb(194 231 255)';
+        // Change button background color after selection
+        var selectedButton = document.querySelector(`button[onclick*="selectLanguage('${langCode}')"]`);
+        if (selectedButton) {
+            selectedButton.style.backgroundColor = 'rgb(194 231 255)';
+        }
+
+        // Revert the previous selected button's background to original color
+        var previousSelectedButton = document.querySelector('button[style*="background-color: rgb(194 231 255)"]');
+        if (previousSelectedButton && previousSelectedButton !== selectedButton) {
+            previousSelectedButton.style.backgroundColor = '';
+        }
     }
 }
 
