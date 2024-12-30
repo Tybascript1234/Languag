@@ -337,7 +337,10 @@ function getLanguageName(langCode) {
 function restoreLastSelectedLanguage() {
     const savedLangCode = localStorage.getItem('selectedLanguage');
     if (savedLangCode) {
+        // Set the saved language as active
         selectLanguage(savedLangCode);
+        // Highlight the corresponding button
+        updateButtonBackground(savedLangCode);
     }
 }
 
