@@ -387,7 +387,7 @@ function searchLanguage() {
 }
 
 // Initialize functionality on page load
-window.onload = function () {
+document.defaultView.onload = function () {
     setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
 
     const searchInputField = document.getElementById('button_search_input');
