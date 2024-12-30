@@ -260,41 +260,43 @@ function googleTranslateElementInit() {
     }, 'google_translate_element');
 }
 
-// Save selected language in localStorage
-function saveSelectedLanguage(langCode) {
-    localStorage.setItem('selectedLanguage', langCode);
-}
-
-// Apply saved language on page load
-function applySavedLanguage() {
-    const savedLanguage = localStorage.getItem('selectedLanguage');
-    if (savedLanguage) {
-        selectLanguage(savedLanguage);
-    }
-}
+// Track the currently active button
+let activeButton = null;
 
 // Select language and update display based on the selected language
 function selectLanguage(langCode) {
-    const selectElement = document.querySelector('.goog-te-combo');
+    var selectElement = document.querySelector('.goog-te-combo');
     if (selectElement) {
         selectElement.value = langCode;
         selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
 
-        // Update button background colors
-        updateButtonStyles(langCode);
+        // Hide Google Translate tooltip on language selection
+        var tooltipElement = document.getElementById('google_translate_tooltip');
+        if (tooltipElement) {
+            tooltipElement.style.display = 'none';
+            tooltipElement.style.visibility = 'hidden';
+        }
 
-        // Save selected language to localStorage
-        saveSelectedLanguage(langCode);
+        // Update selected language display
+        var selectedLanguageDiv = document.getElementById('selected_language_display');
+        if (selectedLanguageDiv) {
+            selectedLanguageDiv.textContent = getLanguageName(langCode);
+        }
+
+        // Change button background color and store the selected language in localStorage
+        updateButtonBackground(langCode);
+        localStorage.setItem('selectedLanguage', langCode);
     }
 }
 
-// Update button styles based on selected language
-function updateButtonStyles(selectedLang) {
+// Update button background color
+function updateButtonBackground(langCode) {
     const buttons = document.querySelectorAll('#translation_buttons button');
+
     buttons.forEach(button => {
-        const langCode = button.getAttribute('onclick').match(/selectLanguage\('(.*?)'\)/)[1];
-        if (langCode === selectedLang) {
-            button.style.background = 'rgb(194, 231, 255)';
+        if (button.getAttribute('onclick').includes(langCode)) {
+            button.style.background = 'rgb(194 231 255)';
+            activeButton = button;
         } else {
             button.style.background = '';
         }
@@ -331,6 +333,35 @@ function getLanguageName(langCode) {
     }
 }
 
+// Restore the last selected language and button background after page reload
+function restoreLastSelectedLanguage() {
+    const savedLangCode = localStorage.getItem('selectedLanguage');
+    if (savedLangCode) {
+        selectLanguage(savedLangCode);
+    }
+}
+
+// Create ripple effect for buttons
+function createRipple(event) {
+    const button = event.currentTarget;
+    const ripple = document.createElement("span");
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+
+    ripple.classList.add("ripple");
+    button.appendChild(ripple);
+
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
 // Search functionality for translation buttons
 function searchLanguage() {
     const searchInputField = document.getElementById('button_search_input');
@@ -341,6 +372,7 @@ function searchLanguage() {
     const searchTerm = searchInputField.value.toLowerCase();
     let hasResults = false;
 
+    // Loop through buttons and display/hide based on search term
     translationButtons.forEach(button => {
         const buttonName = button.textContent.toLowerCase();
         if (buttonName.includes(searchTerm)) {
@@ -351,6 +383,7 @@ function searchLanguage() {
         }
     });
 
+    // Handle display of no results message and button visibility
     if (searchTerm === '') {
         translationButtons.forEach(button => {
             button.style.display = 'flex';
@@ -365,17 +398,11 @@ function searchLanguage() {
 }
 
 // Initialize functionality on page load
-document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(googleTranslateElementInit, 1000);
-    applySavedLanguage();
+window.onload = function () {
+    restoreLastSelectedLanguage();
+    setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
+};
 
-    const searchInputField = document.getElementById('button_search_input');
-    if (searchInputField) {
-        searchInputField.addEventListener('input', searchLanguage);
-    }
-});
-
-    
 </script>
     
 </body>
