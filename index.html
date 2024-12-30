@@ -366,7 +366,18 @@ function searchLanguage() {
     }
 }
 
-// Create ripple effect for buttons
+// Initialize functionality on page load
+window.onload = function () {
+    setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
+
+    const searchInputField = document.getElementById('button_search_input');
+    if (searchInputField) {
+        searchInputField.addEventListener('input', searchLanguage);
+    }
+};
+});
+
+    // Create ripple effect for buttons
 function createRipple(event) {
     const button = event.currentTarget;
     const ripple = document.createElement("span");
@@ -386,17 +397,6 @@ function createRipple(event) {
         ripple.remove();
     }, 600);
 }
-
-// Initialize functionality on page load
-window.onload = function () {
-    setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
-
-    const searchInputField = document.getElementById('button_search_input');
-    if (searchInputField) {
-        searchInputField.addEventListener('input', searchLanguage);
-    }
-};
-});
 </script>
     
 </body>
