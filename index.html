@@ -411,7 +411,12 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         restoreLastSelectedLanguage();
         setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
     };
+
+    // Expose functions to the global scope
+    window.createRipple = createRipple;
+    window.selectLanguage = selectLanguage;
 })();
+
 
 
 </script>
