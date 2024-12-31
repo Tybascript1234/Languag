@@ -265,9 +265,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         </div>
     
 <script>
-// Define a namespace to avoid conflicts
-const MySiteGoogleTranslate = (() => {
-
+const GoogleTranslateCustom = (() => {
     // Initialize Google Translate Element
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
@@ -283,7 +281,7 @@ const MySiteGoogleTranslate = (() => {
         const selectElement = document.querySelector('.goog-te-combo');
         if (selectElement) {
             selectElement.value = langCode;
-            selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
+            selectElement.dispatchEvent(new Event('change', { bubbles: true }));
 
             // Hide Google Translate tooltip on language selection
             const tooltipElement = document.getElementById('google_translate_tooltip');
@@ -307,9 +305,8 @@ const MySiteGoogleTranslate = (() => {
     // Update button background color
     function updateButtonBackground(langCode) {
         const buttons = document.querySelectorAll('#translation_buttons button');
-
         buttons.forEach(button => {
-            if (button.getAttribute('onclick')?.includes(langCode)) {
+            if (button.getAttribute('onclick').includes(langCode)) {
                 button.style.background = 'rgb(194 231 255)';
                 activeButton = button;
             } else {
@@ -320,25 +317,25 @@ const MySiteGoogleTranslate = (() => {
 
     // Get the language name based on the language code
     function getLanguageName(langCode) {
-        const languageMap = {
-            'en': 'English',
-            'ar': 'Arabic',
-            'ur': 'Urdu',
-            'tr': 'Turkish',
-            'fr': 'French',
-            'ja': 'Japanese',
+        const languages = {
+            en: 'English',
+            ar: 'Arabic',
+            ur: 'Urdu',
+            tr: 'Turkish',
+            fr: 'French',
+            ja: 'Japanese',
             'zh-CN': 'Chinese',
-            'ru': 'Russian',
-            'es': 'Spanish',
-            'ko': 'Korean',
-            'ms': 'Malay',
-            'it': 'Italian',
-            'pt': 'Portuguese',
-            'th': 'Thai',
-            'sv': 'Swedish',
-            'uk': 'Ukrainian'
+            ru: 'Russian',
+            es: 'Spanish',
+            ko: 'Korean',
+            ms: 'Malay',
+            it: 'Italian',
+            pt: 'Portuguese',
+            th: 'Thai',
+            sv: 'Swedish',
+            uk: 'Ukrainian',
         };
-        return languageMap[langCode] || 'Unknown';
+        return languages[langCode] || 'Unknown';
     }
 
     // Restore the last selected language and button background after page reload
@@ -362,8 +359,8 @@ const MySiteGoogleTranslate = (() => {
         ripple.style.width = ripple.style.height = `${size}px`;
         ripple.style.left = `${x}px`;
         ripple.style.top = `${y}px`;
-        ripple.classList.add('ripple');
 
+        ripple.classList.add('ripple');
         button.appendChild(ripple);
 
         setTimeout(() => {
@@ -407,23 +404,25 @@ const MySiteGoogleTranslate = (() => {
     }
 
     // Initialize functionality on page load
-    function initialize() {
+    function init() {
         restoreLastSelectedLanguage();
         setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
+
+        // Attach ripple effect to buttons
+        const buttons = document.querySelectorAll('#translation_buttons button');
+        buttons.forEach(button => button.addEventListener('click', createRipple));
     }
 
-    // Expose public methods
     return {
-        initialize,
+        init,
         selectLanguage,
-        createRipple,
-        searchLanguage
+        searchLanguage,
     };
-
 })();
 
-// Initialize on page load
-window.onload = MySiteGoogleTranslate.initialize;
+// Initialize the script
+window.onload = GoogleTranslateCustom.init;
+
 
 </script>
     
