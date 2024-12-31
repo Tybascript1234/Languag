@@ -265,7 +265,9 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         </div>
     
 <script>
-(function () {
+// Define a namespace to avoid conflicts
+const MySiteGoogleTranslate = (() => {
+
     // Initialize Google Translate Element
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
@@ -278,20 +280,20 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
 
     // Select language and update display based on the selected language
     function selectLanguage(langCode) {
-        var selectElement = document.querySelector('.goog-te-combo');
+        const selectElement = document.querySelector('.goog-te-combo');
         if (selectElement) {
             selectElement.value = langCode;
             selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
 
             // Hide Google Translate tooltip on language selection
-            var tooltipElement = document.getElementById('google_translate_tooltip');
+            const tooltipElement = document.getElementById('google_translate_tooltip');
             if (tooltipElement) {
                 tooltipElement.style.display = 'none';
                 tooltipElement.style.visibility = 'hidden';
             }
 
             // Update selected language display
-            var selectedLanguageDiv = document.getElementById('selected_language_display');
+            const selectedLanguageDiv = document.getElementById('selected_language_display');
             if (selectedLanguageDiv) {
                 selectedLanguageDiv.textContent = getLanguageName(langCode);
             }
@@ -307,7 +309,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         const buttons = document.querySelectorAll('#translation_buttons button');
 
         buttons.forEach(button => {
-            if (button.getAttribute('onclick').includes(langCode)) {
+            if (button.getAttribute('onclick')?.includes(langCode)) {
                 button.style.background = 'rgb(194 231 255)';
                 activeButton = button;
             } else {
@@ -318,34 +320,32 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
 
     // Get the language name based on the language code
     function getLanguageName(langCode) {
-        switch (langCode) {
-            case 'en': return 'English';
-            case 'ar': return 'Arabic';
-            case 'ur': return 'Urdu';
-            case 'tr': return 'Turkish';
-            case 'fr': return 'French';
-            case 'ja': return 'Japanese';
-            case 'zh-CN': return 'Chinese';
-            case 'ru': return 'Russian';
-            case 'es': return 'Spanish';
-            case 'ko': return 'Korean';
-            case 'ms': return 'Malay';
-            case 'it': return 'Italian';
-            case 'pt': return 'Portuguese';
-            case 'th': return 'Thai';
-            case 'sv': return 'Swedish';
-            case 'uk': return 'Ukrainian';
-            default: return 'Unknown';
-        }
+        const languageMap = {
+            'en': 'English',
+            'ar': 'Arabic',
+            'ur': 'Urdu',
+            'tr': 'Turkish',
+            'fr': 'French',
+            'ja': 'Japanese',
+            'zh-CN': 'Chinese',
+            'ru': 'Russian',
+            'es': 'Spanish',
+            'ko': 'Korean',
+            'ms': 'Malay',
+            'it': 'Italian',
+            'pt': 'Portuguese',
+            'th': 'Thai',
+            'sv': 'Swedish',
+            'uk': 'Ukrainian'
+        };
+        return languageMap[langCode] || 'Unknown';
     }
 
     // Restore the last selected language and button background after page reload
     function restoreLastSelectedLanguage() {
         const savedLangCode = localStorage.getItem('selectedLanguage');
         if (savedLangCode) {
-            // Set the saved language as active
             selectLanguage(savedLangCode);
-            // Highlight the corresponding button
             updateButtonBackground(savedLangCode);
         }
     }
@@ -353,7 +353,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
     // Create ripple effect for buttons
     function createRipple(event) {
         const button = event.currentTarget;
-        const ripple = document.createElement("span");
+        const ripple = document.createElement('span');
         const rect = button.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
         const x = event.clientX - rect.left - size / 2;
@@ -362,8 +362,8 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         ripple.style.width = ripple.style.height = `${size}px`;
         ripple.style.left = `${x}px`;
         ripple.style.top = `${y}px`;
+        ripple.classList.add('ripple');
 
-        ripple.classList.add("ripple");
         button.appendChild(ripple);
 
         setTimeout(() => {
@@ -407,11 +407,23 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
     }
 
     // Initialize functionality on page load
-    window.onload = function () {
+    function initialize() {
         restoreLastSelectedLanguage();
         setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
+    }
+
+    // Expose public methods
+    return {
+        initialize,
+        selectLanguage,
+        createRipple,
+        searchLanguage
     };
+
 })();
+
+// Initialize on page load
+window.onload = MySiteGoogleTranslate.initialize;
 
 </script>
     
