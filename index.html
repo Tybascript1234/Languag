@@ -324,14 +324,17 @@ function selectLanguage(langCode) {
 function updateButtonBackground(langCode) {
     const buttons = document.querySelectorAll('#translation_buttons button');
 
+    // Loop through all buttons to reset their background color
     buttons.forEach(button => {
-        if (button.getAttribute('onclick').includes(langCode)) {
-            button.style.background = 'rgb(194 231 255)';
-            activeButton = button;
-        } else {
-            button.style.background = '';
-        }
+        button.style.background = ''; // Reset background
     });
+
+    // Find the selected button and apply the highlight color
+    const selectedButton = Array.from(buttons).find(button => button.getAttribute('onclick') && button.getAttribute('onclick').includes(langCode));
+    if (selectedButton) {
+        selectedButton.style.background = 'rgb(194 231 255)';
+        activeButton = selectedButton;
+    }
 }
 
 // Get the language name based on the language code
