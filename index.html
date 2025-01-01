@@ -325,11 +325,12 @@ function updateButtonBackground(langCode) {
     const buttons = document.querySelectorAll('#translation_buttons button');
 
     buttons.forEach(button => {
-        if (button.getAttribute('onclick') && button.getAttribute('onclick').includes(langCode)) {
-            button.style.background = 'rgb(194 231 255)'; // Highlight selected button
-            activeButton = button; // Set the active button
+        // Check if the button corresponds to the selected language code
+        if (button.getAttribute('data-lang') === langCode) {
+            button.style.background = 'rgb(194 231 255)';
+            activeButton = button;
         } else {
-            button.style.background = ''; // Reset background for non-selected buttons
+            button.style.background = '';
         }
     });
 }
