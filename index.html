@@ -330,7 +330,7 @@ function updateButtonBackground(langCode) {
     });
 
     // Find the selected button by matching the langCode with the button's language identifier
-    const selectedButton = Array.from(buttons).find(button => button.dataset.lang === langCode);
+    const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
     if (selectedButton) {
         selectedButton.style.background = 'rgb(194 231 255)';
         activeButton = selectedButton;
