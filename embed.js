@@ -1,5 +1,5 @@
 (function () {
-  const fileURL = "https://tybascript1234.github.io/Languag/index.html"; // تأكد من صحة الرابط
+  const fileURL = "https://tybascript1234.github.io/Languag/"; // تأكد من صحة الرابط
 
   // تحميل ملف HTML
   fetch(fileURL)
