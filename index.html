@@ -325,12 +325,16 @@ function updateButtonBackground(langCode) {
     const buttons = document.querySelectorAll('#translation_buttons button');
 
     buttons.forEach(button => {
-        // Check if the button corresponds to the selected language code
-        if (button.getAttribute('data-lang') === langCode) {
-            button.style.background = 'rgb(194 231 255)';
+        if (button.getAttribute('onclick').includes(langCode)) {
+            // Check for Greek language specifically and change its background color
+            if (langCode === 'el') {
+                button.style.background = 'rgb(194 231 255)';
+            } else {
+                button.style.background = ''; // Reset for other buttons
+            }
             activeButton = button;
         } else {
-            button.style.background = '';
+            button.style.background = ''; // Reset for non-selected buttons
         }
     });
 }
@@ -386,8 +390,8 @@ function getLanguageName(langCode) {
             return 'Norwegian';
         case 'cs':
             return 'Czech';
-        case 'el': // Greek
-            return 'Greek';
+        case 'el':
+            return 'Greek'; // Greek case
         case 'ro':
             return 'Romanian';
         case 'da':
@@ -473,6 +477,7 @@ window.onload = function () {
     restoreLastSelectedLanguage();
     setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
 };
+
 
 </script>
     
