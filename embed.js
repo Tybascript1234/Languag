@@ -1,5 +1,5 @@
 (function () {
-  const fileURL = "https://tybascript1234.github.io/Languag/"; // تأكد من صحة الرابط
+  const fileURL = "https://tybascript1234.github.io/Languag/index.html"; // تأكد من صحة الرابط
 
   // تحميل ملف HTML
   fetch(fileURL)
@@ -54,6 +54,9 @@
 
       // تأكد من تحميل مكتبة Google Translate
       ensureGoogleTranslateLoaded();
+
+      // إضافة سكربت tr.js إذا كان موجودًا في نفس المجلد أو من رابط خارجي
+      loadExternalScript('path/to/tr.js'); // ضع المسار المناسب هنا
     })
     .catch((error) => console.error("Error loading the file:", error));
 
@@ -76,4 +79,18 @@
       }
     }, 5000);
   }
+
+  // تحميل السكربت الخارجي tr.js
+  function loadExternalScript(scriptURL) {
+    const scriptElement = document.createElement("script");
+    scriptElement.src = scriptURL;
+    scriptElement.onload = () => {
+      console.log(`${scriptURL} loaded successfully.`);
+    };
+    scriptElement.onerror = (err) => {
+      console.error(`Failed to load ${scriptURL}:`, err);
+    };
+    document.body.appendChild(scriptElement);
+  }
+
 })();
