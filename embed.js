@@ -23,14 +23,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         scripts.forEach((script) => {
-          const newScript = document.createElement("script");
-          if (script.src) {
-            newScript.src = script.src;
-          } else {
-            newScript.textContent = script.textContent;
-          }
-          document.body.appendChild(newScript);
-        });
+  const newScript = document.createElement("script");
+  if (script.src) {
+    newScript.src = script.src;
+    newScript.onload = () => console.log(`Script loaded: ${script.src}`);
+    newScript.onerror = (err) => console.error(`Failed to load script: ${script.src}`, err);
+  } else {
+    newScript.textContent = script.textContent;
+  }
+  document.body.appendChild(newScript);
+});
+
 
         ensureGoogleTranslateLoaded();
       })
