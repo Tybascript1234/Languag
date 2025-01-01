@@ -326,12 +326,7 @@ function updateButtonBackground(langCode) {
 
     buttons.forEach(button => {
         if (button.getAttribute('onclick').includes(langCode)) {
-            // Check if the language is Greek
-            if (langCode === 'el') {
-                button.style.background = 'rgb(194 231 255)';
-            } else {
-                button.style.background = '';
-            }
+            button.style.background = 'rgb(194 231 255)';
             activeButton = button;
         } else {
             button.style.background = '';
@@ -390,8 +385,8 @@ function getLanguageName(langCode) {
             return 'Norwegian';
         case 'cs':
             return 'Czech';
-        case 'el':
-            return 'Greek';  // Greek language
+        case 'el':  // Greek case
+            return 'Greek';
         case 'ro':
             return 'Romanian';
         case 'da':
