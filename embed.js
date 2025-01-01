@@ -1,5 +1,5 @@
-(function () {
-  const fileURL = "https://tybascript1234.github.io/Languag/index.html"; // تأكد من صحة الرابط
+ (function () {
+  const fileURL = "https://tybascript1234.github.io/Languag/";
 
   // تحميل ملف HTML
   fetch(fileURL)
@@ -25,38 +25,16 @@
       // تشغيل السكربتات الموجودة في الملف
       scripts.forEach((script) => {
         const newScript = document.createElement("script");
-
-        // إذا كان السكربت يحتوي على src
         if (script.src) {
           newScript.src = script.src;
-
-          // التأكد من تحميل السكربت بنجاح
-          newScript.onload = () => {
-            console.log(`Script loaded: ${newScript.src}`);
-          };
-
-          // التعامل مع الخطأ إذا فشل تحميل السكربت
-          newScript.onerror = (err) => {
-            console.error(`Failed to load script: ${newScript.src}`, err);
-          };
-
-        // إذا كان السكربت لا يحتوي على src (نص سكربت داخلي)
-        } else if (script.textContent) {
-          newScript.textContent = script.textContent;
         } else {
-          console.warn("Script has no source or content", script);
-          return;  // تجاهل السكربت إذا لم يحتوي على نص أو src
+          newScript.textContent = script.textContent;
         }
-
-        // إضافة السكربت إلى body
         document.body.appendChild(newScript);
       });
 
       // تأكد من تحميل مكتبة Google Translate
       ensureGoogleTranslateLoaded();
-
-      // إضافة سكربت tr.js إذا كان موجودًا في نفس المجلد أو من رابط خارجي
-      loadExternalScript('tr.js'); // ضع المسار المناسب هنا
     })
     .catch((error) => console.error("Error loading the file:", error));
 
@@ -79,18 +57,4 @@
       }
     }, 5000);
   }
-
-  // تحميل السكربت الخارجي tr.js
-  function loadExternalScript(scriptURL) {
-    const scriptElement = document.createElement("script");
-    scriptElement.src = scriptURL;
-    scriptElement.onload = () => {
-      console.log(`${scriptURL} loaded successfully.`);
-    };
-    scriptElement.onerror = (err) => {
-      console.error(`Failed to load ${scriptURL}:`, err);
-    };
-    document.body.appendChild(scriptElement);
-  }
-
 })();
