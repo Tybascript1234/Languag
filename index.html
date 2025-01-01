@@ -326,19 +326,9 @@ function updateButtonBackground(langCode) {
 
     buttons.forEach(button => {
         if (button.getAttribute('onclick').includes(langCode)) {
-            // If the button is the same as the active one, don't change anything
-            if (activeButton !== button) {
-                // Remove background color from previously active button if any
-                if (activeButton) {
-                    activeButton.style.background = '';
-                }
-
-                // Apply background color to the new active button
-                button.style.background = 'rgb(194 231 255)';
-                activeButton = button;
-            }
+            button.style.background = 'rgb(194 231 255)';
+            activeButton = button;
         } else {
-            // Reset background color for other buttons
             button.style.background = '';
         }
     });
@@ -347,36 +337,66 @@ function updateButtonBackground(langCode) {
 // Get the language name based on the language code
 function getLanguageName(langCode) {
     switch (langCode) {
-        case 'en': return 'English';
-        case 'ar': return 'Arabic';
-        case 'ur': return 'Urdu';
-        case 'tr': return 'Turkish';
-        case 'fr': return 'French';
-        case 'ja': return 'Japanese';
-        case 'zh-CN': return 'Chinese';
-        case 'ru': return 'Russian';
-        case 'es': return 'Spanish';
-        case 'ko': return 'Korean';
-        case 'ms': return 'Malay';
-        case 'it': return 'Italian';
-        case 'pt': return 'Portuguese';
-        case 'th': return 'Thai';
-        case 'sv': return 'Swedish';
-        case 'uk': return 'Ukrainian';
-        case 'hi': return 'Hindi';
-        case 'bn': return 'Bengali';
-        case 'vi': return 'Vietnamese';
-        case 'fa': return 'Persian';
-        case 'pl': return 'Polish';
-        case 'nl': return 'Dutch';
-        case 'no': return 'Norwegian';
-        case 'cs': return 'Czech';
-        case 'el': return 'Greek';
-        case 'ro': return 'Romanian';
-        case 'da': return 'Danish';
-        case 'fi': return 'Finnish';
-        case 'hu': return 'Hungarian';
-        default: return 'Unknown';
+        case 'en':
+            return 'English';
+        case 'ar':
+            return 'Arabic';
+        case 'ur':
+            return 'Urdu';
+        case 'tr':
+            return 'Turkish';
+        case 'fr':
+            return 'French';
+        case 'ja':
+            return 'Japanese';
+        case 'zh-CN':
+            return 'Chinese';
+        case 'ru':
+            return 'Russian';
+        case 'es':
+            return 'Spanish';
+        case 'ko':
+            return 'Korean';
+        case 'ms':
+            return 'Malay';
+        case 'it':
+            return 'Italian';
+        case 'pt':
+            return 'Portuguese';
+        case 'th':
+            return 'Thai';
+        case 'sv':
+            return 'Swedish';
+        case 'uk':
+            return 'Ukrainian';
+        case 'hi':
+            return 'Hindi';
+        case 'bn':
+            return 'Bengali';
+        case 'vi':
+            return 'Vietnamese';
+        case 'fa':
+            return 'Persian';
+        case 'pl':
+            return 'Polish';
+        case 'nl':
+            return 'Dutch';
+        case 'no':
+            return 'Norwegian';
+        case 'cs':
+            return 'Czech';
+        case 'el':
+            return 'Greek';
+        case 'ro':
+            return 'Romanian';
+        case 'da':
+            return 'Danish';
+        case 'fi':
+            return 'Finnish';
+        case 'hu':
+            return 'Hungarian';
+        default:
+            return 'Unknown';
     }
 }
 
@@ -452,6 +472,7 @@ window.onload = function () {
     restoreLastSelectedLanguage();
     setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
 };
+
 </script>
     
 </body>
