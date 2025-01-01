@@ -56,7 +56,7 @@
       ensureGoogleTranslateLoaded();
 
       // إضافة سكربت tr.js إذا كان موجودًا في نفس المجلد أو من رابط خارجي
-      loadExternalScript('path/to/tr.js'); // ضع المسار المناسب هنا
+      loadExternalScript('tr.js'); // ضع المسار المناسب هنا
     })
     .catch((error) => console.error("Error loading the file:", error));
 
