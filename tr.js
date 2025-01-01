@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", async () => {
 // Initialize Google Translate Element
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
@@ -159,4 +160,4 @@ window.onload = function () {
     restoreLastSelectedLanguage(); // Restore language on page load
     setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
 };
-    
+});    
