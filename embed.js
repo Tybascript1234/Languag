@@ -25,6 +25,8 @@
       // تشغيل السكربتات الموجودة في الملف
       scripts.forEach((script) => {
         const newScript = document.createElement("script");
+
+        // إذا كان السكربت يحتوي على src
         if (script.src) {
           newScript.src = script.src;
 
@@ -37,8 +39,13 @@
           newScript.onerror = (err) => {
             console.error(`Failed to load script: ${newScript.src}`, err);
           };
-        } else {
+
+        // إذا كان السكربت لا يحتوي على src (نص سكربت داخلي)
+        } else if (script.textContent) {
           newScript.textContent = script.textContent;
+        } else {
+          console.warn("Script has no source or content", script);
+          return;  // تجاهل السكربت إذا لم يحتوي على نص أو src
         }
 
         // إضافة السكربت إلى body
