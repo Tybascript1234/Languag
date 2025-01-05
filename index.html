@@ -438,22 +438,24 @@ window.googleTranslateHandler = {
 
 // Initialize functionality on page load
 window.onload = function () {
-    window.googleTranslateHandler.restoreLastSelectedLanguage();
-    setTimeout(() => window.googleTranslateHandler.googleTranslateElementInit(), 1000);
+    const handler = window.googleTranslateHandler;
+
+    handler.restoreLastSelectedLanguage();
+    setTimeout(() => handler.googleTranslateElementInit(), 1000);
 
     // Attach event listeners to buttons
     const buttons = document.querySelectorAll('#translation_buttons button');
     buttons.forEach(button => {
         button.addEventListener('click', (event) => {
             const langCode = button.getAttribute('data-lang');
-            window.googleTranslateHandler.selectLanguage(langCode);
-            window.googleTranslateHandler.createRipple(event);
+            handler.selectLanguage(langCode);
+            handler.createRipple(event);
         });
     });
 
     const searchInput = document.getElementById('button_search_input');
     if (searchInput) {
-        searchInput.addEventListener('input', () => window.googleTranslateHandler.searchLanguage());
+        searchInput.addEventListener('input', () => handler.searchLanguage());
     }
 };
     
