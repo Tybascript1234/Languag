@@ -325,12 +325,10 @@ window.googleTranslateHandler = {
     updateButtonBackground: function (langCode) {
         const buttons = document.querySelectorAll('#translation_buttons button');
 
-        // Loop through all buttons to reset their background color
         buttons.forEach(button => {
             button.style.background = ''; // Reset background
         });
 
-        // Find the selected button by matching the langCode with the button's language identifier
         const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
         if (selectedButton) {
             selectedButton.style.background = 'rgb(194 231 255)';
@@ -378,9 +376,7 @@ window.googleTranslateHandler = {
     restoreLastSelectedLanguage: function () {
         const savedLangCode = localStorage.getItem('selectedLanguage');
         if (savedLangCode) {
-            // Set the saved language as active
             this.selectLanguage(savedLangCode);
-            // Highlight the corresponding button
             this.updateButtonBackground(savedLangCode);
         }
     },
@@ -416,7 +412,6 @@ window.googleTranslateHandler = {
         const searchTerm = searchInputField.value.toLowerCase();
         let hasResults = false;
 
-        // Loop through buttons and display/hide based on search term
         translationButtons.forEach(button => {
             const buttonName = button.textContent.toLowerCase();
             if (buttonName.includes(searchTerm)) {
@@ -427,7 +422,6 @@ window.googleTranslateHandler = {
             }
         });
 
-        // Handle display of no results message and button visibility
         if (searchTerm === '') {
             translationButtons.forEach(button => {
                 button.style.display = 'flex';
@@ -444,8 +438,23 @@ window.googleTranslateHandler = {
 
 // Initialize functionality on page load
 window.onload = function () {
-    window.googleTranslateHandler.restoreLastSelectedLanguage(); // Restore language on page load
-    setTimeout(() => window.googleTranslateHandler.googleTranslateElementInit(), 1000); // Wait for the Google Translate widget to load
+    window.googleTranslateHandler.restoreLastSelectedLanguage();
+    setTimeout(() => window.googleTranslateHandler.googleTranslateElementInit(), 1000);
+
+    // Attach event listeners to buttons
+    const buttons = document.querySelectorAll('#translation_buttons button');
+    buttons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const langCode = button.getAttribute('data-lang');
+            window.googleTranslateHandler.selectLanguage(langCode);
+            window.googleTranslateHandler.createRipple(event);
+        });
+    });
+
+    const searchInput = document.getElementById('button_search_input');
+    if (searchInput) {
+        searchInput.addEventListener('input', () => window.googleTranslateHandler.searchLanguage());
+    }
 };
     
 </script>
