@@ -1,4 +1,4 @@
- (function () {
+Google Translate did not load in time.  (function () {
   const fileURL = "https://tybascript1234.github.io/Languag/";
 
   // تحميل ملف HTML
