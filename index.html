@@ -343,14 +343,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 600);
     };
 
-    // Continue with the rest of your code...
+    // Update button background color
     function updateButtonBackground(langCode) {
         const buttons = document.querySelectorAll('#translation_buttons button');
 
+        // Loop through all buttons to reset their background color
         buttons.forEach(button => {
-            button.style.background = ''; 
+            button.style.background = ''; // Reset background
         });
 
+        // Find the selected button by matching the langCode with the button's language identifier
         const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
         if (selectedButton) {
             selectedButton.style.background = 'rgb(194 231 255)';
@@ -358,6 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Restore the last selected language and button background after page reload
     function restoreLastSelectedLanguage() {
         const savedLangCode = localStorage.getItem('selectedLanguage');
         if (savedLangCode) {
@@ -366,6 +369,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Get the language name based on the language code
     function getLanguageName(langCode) {
         switch (langCode) {
             case 'en': return 'English';
@@ -405,6 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
     restoreLastSelectedLanguage(); // Restore language on page load
 }); // End of DOMContentLoaded event listener
+
 
     
 </script>
