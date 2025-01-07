@@ -299,29 +299,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Select language and update display based on the selected language
         window.selectLanguage = function (langCode) {
-            var selectElement = document.querySelector('.goog-te-combo');
-            if (selectElement) {
-                selectElement.value = langCode;
-                selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
+    // تحديد العنصر الذي يحتوي على قائمة اختيار اللغة من Google Translate
+    var selectElement = document.querySelector('.goog-te-combo');
+    
+    if (selectElement) {
+        // تعيين القيمة المختارة بناءً على langCode
+        selectElement.value = langCode;
+        selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
 
-                // Hide Google Translate tooltip on language selection
-                var tooltipElement = document.getElementById('google_translate_tooltip');
-                if (tooltipElement) {
-                    tooltipElement.style.display = 'none';
-                    tooltipElement.style.visibility = 'hidden';
-                }
+        // إخفاء التلميح الخاص بـ Google Translate بعد تحديد اللغة
+        var tooltipElement = document.getElementById('google_translate_tooltip');
+        if (tooltipElement) {
+            tooltipElement.style.display = 'none';
+            tooltipElement.style.visibility = 'hidden';
+        }
 
-                // Update selected language display
-                var selectedLanguageDiv = document.getElementById('selected_language_display');
-                if (selectedLanguageDiv) {
-                    selectedLanguageDiv.textContent = getLanguageName(langCode);
-                }
+        // تحديث عرض اللغة المحددة
+        var selectedLanguageDiv = document.getElementById('selected_language_display');
+        if (selectedLanguageDiv) {
+            selectedLanguageDiv.textContent = getLanguageName(langCode);
+        }
 
-                // Change button background color and store the selected language in localStorage
-                updateButtonBackground(langCode);
-                localStorage.setItem('selectedLanguage', langCode);
-            }
-        };
+        // تحديث خلفية الزر الخاص باللغة المحددة وتخزين اللغة المختارة في localStorage
+        updateButtonBackground(langCode);
+        localStorage.setItem('selectedLanguage', langCode);
+        
+        // إضافة سجل للمساعدة في التصحيح
+        console.log(`تم تغيير اللغة إلى: ${langCode}`);
+    } else {
+        // في حالة عدم العثور على العنصر المطلوب
+        console.error('لم يتم العثور على قائمة اختيار اللغة الخاصة بـ Google Translate');
+    }
+};
 
         // Update button background color
         function updateButtonBackground(langCode) {
