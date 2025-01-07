@@ -45,8 +45,10 @@
       if (translateElement) {
         clearInterval(interval);
         console.log("Google Translate is ready.");
+      } else {
+        console.log("Google Translate element not found yet...");
       }
-    }, 100);
+    }, 200);
 
     // بعد مدة محددة، إذا لم يتم العثور على العنصر، أبلغ عن خطأ
     setTimeout(() => {
@@ -55,6 +57,6 @@
       if (!translateElement) {
         console.error("Google Translate did not load in time.");
       }
-    }, 5000);
+    }, 10000); // Increased timeout to 10 seconds
   }
 })();
