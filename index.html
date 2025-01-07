@@ -296,7 +296,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
     let activeButton = null;
 
     // Select language and update display based on the selected language
-    function selectLanguage(langCode) {
+    window.selectLanguage = function(langCode) {
         var selectElement = document.querySelector('.goog-te-combo');
         if (selectElement) {
             selectElement.value = langCode;
@@ -319,7 +319,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
             updateButtonBackground(langCode);
             localStorage.setItem('selectedLanguage', langCode);
         }
-    }
+    };
 
     // Update button background color
     function updateButtonBackground(langCode) {
@@ -350,7 +350,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
     }
 
     // Create ripple effect for buttons
-    function createRipple(event) {
+    window.createRipple = function(event) {
         const button = event.currentTarget;
         const ripple = document.createElement("span");
         const rect = button.getBoundingClientRect();
@@ -368,7 +368,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         setTimeout(() => {
             ripple.remove();
         }, 600);
-    }
+    };
 
     // Get the language name based on the language code
     function getLanguageName(langCode) {
