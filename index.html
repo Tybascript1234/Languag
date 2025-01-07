@@ -284,7 +284,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         </div>
     
 <script>
-(function(window) {
+document.addEventListener("DOMContentLoaded", async function () {
     // Initialize Google Translate Element
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
@@ -442,11 +442,9 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
     }
 
     // Initialize functionality on page load
-    window.onload = function () {
-        restoreLastSelectedLanguage(); // Restore language on page load
-        setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
-    };
-})(window);
+    setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
+    restoreLastSelectedLanguage(); // Restore language on page load
+});
     
 </script>
 
