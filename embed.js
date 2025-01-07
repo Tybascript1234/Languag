@@ -1,5 +1,5 @@
 (function () {
-  const fileURL = "https://tybascript1234.github.io/Languag/embed.js";
+  const fileURL = "https://tybascript1234.github.io/Languag/";
 
   // تحميل ملف HTML
   fetch(fileURL)
