@@ -1,4 +1,4 @@
-function () {
+(function () {
   const fileURL = "https://tybascript1234.github.io/Languag/embed.js";
 
   // تحميل ملف HTML
