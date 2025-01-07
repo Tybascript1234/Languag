@@ -1,7 +1,7 @@
-(function () {
+ (function () {
   const fileURL = "https://tybascript1234.github.io/Languag/";
 
-  // تحميل ملف HTML أولًا
+  // تحميل ملف HTML
   fetch(fileURL)
     .then((response) => {
       if (!response.ok) {
@@ -33,22 +33,10 @@
         document.body.appendChild(newScript);
       });
 
-      // تحميل مكتبة Google Translate بعد تحميل المحتوى
-      loadGoogleTranslate();
+      // تأكد من تحميل مكتبة Google Translate
+      ensureGoogleTranslateLoaded();
     })
     .catch((error) => console.error("Error loading the file:", error));
-
-  // تحميل مكتبة Google Translate
-  function loadGoogleTranslate() {
-    const script = document.createElement("script");
-    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      // التحقق من تحميل مكتبة Google Translate
-      ensureGoogleTranslateLoaded();
-    };
-  }
 
   // التحقق من تحميل Google Translate
   function ensureGoogleTranslateLoaded() {
@@ -57,17 +45,16 @@
       if (translateElement) {
         clearInterval(interval);
         console.log("Google Translate is ready.");
-        // يمكن هنا بدء العمليات المرتبطة بـ Google Translate
       }
     }, 100);
 
-    // إذا لم يتم تحميل المكتبة خلال 10 ثواني، يتم إيقاف المحاولة
+    // بعد مدة محددة، إذا لم يتم العثور على العنصر، أبلغ عن خطأ
     setTimeout(() => {
       clearInterval(interval);
       const translateElement = document.querySelector(".goog-te-combo");
       if (!translateElement) {
         console.error("Google Translate did not load in time.");
       }
-    }, 10000); // زيادة الوقت إلى 10 ثواني
+    }, 5000);
   }
 })();
