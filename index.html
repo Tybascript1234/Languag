@@ -346,15 +346,13 @@ if (!selectedButton.querySelector('.check-lang')) {
     svg.setAttribute('viewBox', '0 -960 960 960');
     svg.setAttribute('width', '24px');
     svg.setAttribute('fill', '#5f6368');
-
-    // إنشاء عنصر path
+    
+    // إنشاء العنصر path بدون قوس الإغلاق </path>
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', 'M382-240 154-468l57-57 171 171 367-367 57 57-424 424');
     
-    // إضافة عنصر path إلى svg
-    svg.appendChild(path);
-    // إضافة svg إلى الزرار
-    selectedButton.appendChild(svg);
+    svg.appendChild(path);  // إضافة path داخل svg
+    selectedButton.appendChild(svg);  // إضافة svg داخل الزرار
 }
     }
 }
