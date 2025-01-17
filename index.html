@@ -332,7 +332,6 @@ function selectLanguage(langCode) {
 }
 
 // Add check-mark SVG to the selected language button
-// Add check-mark SVG to the selected language button
 function addCheckMark(langCode) {
     const buttons = document.querySelectorAll('#translation_buttons button');
     const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
@@ -340,9 +339,9 @@ function addCheckMark(langCode) {
     if (selectedButton) {
         // Remove the check mark from all buttons before adding a new one
         buttons.forEach(button => {
-            const existingCheckMark = button.querySelector('.check-lang');
-            if (existingCheckMark) {
-                existingCheckMark.remove(); // Remove any existing check mark
+            const checkMark = button.querySelector('.check-lang');
+            if (checkMark) {
+                checkMark.remove();
             }
         });
 
