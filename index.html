@@ -335,7 +335,7 @@ function selectLanguage(langCode) {
 function addCheckMark(langCode) {
     const buttons = document.querySelectorAll('#translation_buttons button');
     const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
-    
+
     if (selectedButton) {
         // Remove the check mark from the previously active button if any
         if (activeButton && activeButton !== selectedButton) {
@@ -345,10 +345,14 @@ function addCheckMark(langCode) {
             }
         }
 
-        // Check if SVG already exists
-        if (!selectedButton.querySelector('.check-lang')) {
-            selectedButton.innerHTML += '<svg class="check-lang" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424"></svg>';
+        // Remove any check mark from the newly selected button if it has one
+        const existingCheckMark = selectedButton.querySelector('.check-lang');
+        if (existingCheckMark) {
+            existingCheckMark.remove(); // Remove existing check mark before adding a new one
         }
+
+        // Add new check mark if it doesn't already have one
+        selectedButton.innerHTML += '<svg class="check-lang" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424"></svg>';
 
         // Update the active button reference
         activeButton = selectedButton;
