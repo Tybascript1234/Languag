@@ -325,30 +325,46 @@ function selectLanguage(langCode) {
         // Change button background color and store the selected language in localStorage
         updateButtonBackground(langCode);
         localStorage.setItem('selectedLanguage', langCode);
+        
+        // Add check-mark SVG inside the button
+        addCheckMark(langCode);
     }
 }
 
-// Add SVG icon inside the selected button
-function addSVGToButton(button) {
-    const svgIcon = '<svg class="check-lang" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>';
-    button.innerHTML += svgIcon;
+// Add check-mark SVG to the selected language button
+function addCheckMark(langCode) {
+    const buttons = document.querySelectorAll('#translation_buttons button');
+    const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
+    
+    if (selectedButton) {
+        // Check if SVG already exists
+        if (!selectedButton.querySelector('.check-lang')) {
+            const svg = document.createElement('svg');
+            svg.setAttribute('class', 'check-lang');
+            svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            svg.setAttribute('height', '24px');
+            svg.setAttribute('viewBox', '0 -960 960 960');
+            svg.setAttribute('width', '24px');
+            svg.setAttribute('fill', '#5f6368');
+            svg.innerHTML = '<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>';
+            selectedButton.appendChild(svg);
+        }
+    }
 }
 
-// Update button background color and add SVG icon
+// Update button background color
 function updateButtonBackground(langCode) {
     const buttons = document.querySelectorAll('#translation_buttons button');
 
-    // Loop through all buttons to reset their background color and remove SVG icon
+    // Loop through all buttons to reset their background color
     buttons.forEach(button => {
         button.style.background = ''; // Reset background
-        button.querySelector('.check-lang')?.remove(); // Remove the SVG if it exists
     });
 
     // Find the selected button by matching the langCode with the button's language identifier
     const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
     if (selectedButton) {
         selectedButton.style.background = 'rgb(194 231 255)';
-        addSVGToButton(selectedButton); // Add SVG icon to selected button
         activeButton = selectedButton;
     }
 }
@@ -385,7 +401,7 @@ function createRipple(event) {
     }, 600);
 }
 
-// Get the language name based on the language code
+    // Get the language name based on the language code
 function getLanguageName(langCode) {
     switch (langCode) {
         case 'en': return 'English';
@@ -461,6 +477,7 @@ window.onload = function () {
     restoreLastSelectedLanguage(); // Restore language on page load
     setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
 };
+
 
 
 
