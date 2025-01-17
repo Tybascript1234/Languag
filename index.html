@@ -337,10 +337,21 @@ function addCheckMark(langCode) {
     const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
     
     if (selectedButton) {
+        // Remove the check mark from the previously active button if any
+        if (activeButton && activeButton !== selectedButton) {
+            const previousCheckMark = activeButton.querySelector('.check-lang');
+            if (previousCheckMark) {
+                previousCheckMark.remove();
+            }
+        }
+
         // Check if SVG already exists
-if (!selectedButton.querySelector('.check-lang')) {
-    selectedButton.innerHTML += '<svg class="check-lang" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424"></svg>';
-}
+        if (!selectedButton.querySelector('.check-lang')) {
+            selectedButton.innerHTML += '<svg class="check-lang" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424"></svg>';
+        }
+
+        // Update the active button reference
+        activeButton = selectedButton;
     }
 }
 
@@ -393,7 +404,7 @@ function createRipple(event) {
     }, 600);
 }
 
-    // Get the language name based on the language code
+// Get the language name based on the language code
 function getLanguageName(langCode) {
     switch (langCode) {
         case 'en': return 'English';
@@ -469,6 +480,7 @@ window.onload = function () {
     restoreLastSelectedLanguage(); // Restore language on page load
     setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
 };
+
 
 
 
