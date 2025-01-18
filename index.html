@@ -292,7 +292,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         </div>
     
 <script>
-       // Initialize Google Translate Element
+      // Initialize Google Translate Element
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'en'
@@ -322,25 +322,34 @@ function selectLanguage(langCode) {
             selectedLanguageDiv.textContent = getLanguageName(langCode);
         }
 
+        // Add image to the selected button and store in localStorage
+        addImageToButton(langCode);
+
         // Change button background color and store the selected language in localStorage
         updateButtonBackground(langCode);
         localStorage.setItem('selectedLanguage', langCode);
-        addLanguageImage(langCode); // Add image to the button
     }
 }
 
 // Add image to the selected button
-function addLanguageImage(langCode) {
-    const button = document.querySelector(`#translation_buttons button[data-lang="${langCode}"]`);
-    if (button) {
-        // Check if the image is already added
-        let img = button.querySelector('img.check-lang');
-        if (!img) {
-            img = document.createElement('img');
-            img.src = `images/${langCode}.png`;  // Assuming images are named by language codes
-            img.classList.add('check-lang');
-            button.appendChild(img);
+function addImageToButton(langCode) {
+    // Remove image from the previous button if exists
+    if (activeButton) {
+        const prevImage = activeButton.querySelector('img.check-lang');
+        if (prevImage) {
+            prevImage.remove();
         }
+    }
+
+    const selectedButton = Array.from(document.querySelectorAll('#translation_buttons button')).find(button => button.getAttribute('data-lang') === langCode);
+    if (selectedButton) {
+        const img = document.createElement('img');
+        img.src = 'your-image-url.png'; // Replace with the actual image URL
+        img.classList.add('check-lang');
+        selectedButton.appendChild(img);
+
+        // Update the active button reference
+        activeButton = selectedButton;
     }
 }
 
@@ -357,7 +366,6 @@ function updateButtonBackground(langCode) {
     const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
     if (selectedButton) {
         selectedButton.style.background = 'rgb(194 231 255)';
-        activeButton = selectedButton;
     }
 }
 
@@ -369,7 +377,6 @@ function restoreLastSelectedLanguage() {
         selectLanguage(savedLangCode);
         // Highlight the corresponding button
         updateButtonBackground(savedLangCode);
-        addLanguageImage(savedLangCode);  // Add image to the last selected language button
     }
 }
 
@@ -470,6 +477,7 @@ window.onload = function () {
     restoreLastSelectedLanguage(); // Restore language on page load
     setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
 };
+
 
 
 
