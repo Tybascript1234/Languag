@@ -322,22 +322,26 @@ function selectLanguage(langCode) {
             selectedLanguageDiv.textContent = getLanguageName(langCode);
         }
 
-        // Change button background color and add SVG icon
+        // Change button background color and store the selected language in localStorage
         updateButtonBackground(langCode);
         localStorage.setItem('selectedLanguage', langCode);
+
+        // Add checkmark SVG to the selected button
+        addCheckmarkToButton(langCode);
     }
 }
 
-// Update button background color and add SVG icon
+// Update button background color
 function updateButtonBackground(langCode) {
     const buttons = document.querySelectorAll('#translation_buttons button');
 
-    // Loop through all buttons to reset their background color and remove SVG icon
+    // Loop through all buttons to reset their background color
     buttons.forEach(button => {
         button.style.background = ''; // Reset background
-        const existingSvg = button.querySelector('svg.check-lang');
-        if (existingSvg) {
-            existingSvg.remove();
+        // Remove existing checkmark if present
+        const checkmark = button.querySelector('.check-lang');
+        if (checkmark) {
+            checkmark.remove();
         }
     });
 
@@ -346,17 +350,22 @@ function updateButtonBackground(langCode) {
     if (selectedButton) {
         selectedButton.style.background = 'rgb(194 231 255)';
         activeButton = selectedButton;
+    }
+}
 
-        // Add SVG icon
-        const svgIcon = document.createElement('svg');
-        svgIcon.setAttribute('class', 'check-lang');
-        svgIcon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-        svgIcon.setAttribute('height', '24px');
-        svgIcon.setAttribute('viewBox', '0 -960 960 960');
-        svgIcon.setAttribute('width', '24px');
-        svgIcon.setAttribute('fill', '#5f6368');
-        svgIcon.innerHTML = '<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>';
-        selectedButton.appendChild(svgIcon);
+// Add checkmark SVG to the selected button
+function addCheckmarkToButton(langCode) {
+    const selectedButton = Array.from(document.querySelectorAll('#translation_buttons button')).find(button => button.getAttribute('data-lang') === langCode);
+    if (selectedButton) {
+        const checkmarkSVG = document.createElement('svg');
+        checkmarkSVG.setAttribute('class', 'check-lang');
+        checkmarkSVG.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        checkmarkSVG.setAttribute('height', '24px');
+        checkmarkSVG.setAttribute('viewBox', '0 -960 960 960');
+        checkmarkSVG.setAttribute('width', '24px');
+        checkmarkSVG.setAttribute('fill', '#5f6368');
+        checkmarkSVG.innerHTML = '<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z">';
+        selectedButton.appendChild(checkmarkSVG);
     }
 }
 
