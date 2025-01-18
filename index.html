@@ -337,25 +337,29 @@ function addCheckMark(langCode) {
     const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
 
     if (selectedButton) {
-        // Hide the check mark from the previously active button if any
+        // Remove the check mark from the previously active button if any
         if (activeButton && activeButton !== selectedButton) {
             const previousCheckMark = activeButton.querySelector('.check-lang');
             if (previousCheckMark) {
-                previousCheckMark.style.display = 'none'; // Hide previous check mark
+                previousCheckMark.parentNode.removeChild(previousCheckMark); // Remove existing SVG
             }
         }
 
         // Check if the selected button already has an icon
-        let existingCheckMark = selectedButton.querySelector('.check-lang');
+        const existingCheckMark = selectedButton.querySelector('.check-lang');
         if (!existingCheckMark) {
-            // Add new check mark if it doesn't already have one
-            selectedButton.innerHTML += '<svg class="check-lang" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424"></svg>';
-            existingCheckMark = selectedButton.querySelector('.check-lang');
-        }
+            // Create new SVG element
+            const checkMark = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            checkMark.setAttribute("class", "check-lang");
+            checkMark.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            checkMark.setAttribute("height", "24px");
+            checkMark.setAttribute("width", "24px");
+            checkMark.setAttribute("viewBox", "0 -960 960 960");
+            checkMark.setAttribute("fill", "#5f6368");
+            checkMark.innerHTML = '<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424"></path>';
 
-        // Display the check mark for the selected button
-        if (existingCheckMark) {
-            existingCheckMark.style.display = 'inline'; // Show the current check mark
+            // Append the new SVG to the button
+            selectedButton.appendChild(checkMark);
         }
 
         // Update the active button reference
