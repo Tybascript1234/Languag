@@ -4,294 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <div id="google_translate_element"></div>
     <script style="height: auto;" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-    <style>
-body {
-    position: static !important; /* إلغاء الـ position المضافة */
-    min-height: auto !important; /* إلغاء الـ min-height المضافة */
-    top: auto;
-    margin: 0;
-}
-.VIpgJd-ZVi9od-l4eHX-hSRGPd {
-  display: none;
-}
-.VIpgJd-ZVi9od-ORHb-OEVmcd {
-  display: none
-}
-.VIpgJd-ZVi9od-aZ2wEe {
-  display: none;
-}
-.goog-te-gadget {
-  display: none;
-}
-.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
-  display: none;
-}
-/* CSS to hide Google Translate tooltip */
-#goog-gt-tt {
-  display: none !important;
-  visibility: hidden !important;
-  background-color: transparent !important; /* Ensure background remains transparent */
-}
-body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
-  background-color: #00000000;
-  box-shadow: none;
-}
-        .ripple-btn{
-    position: relative;
-    overflow: hidden;
-    transition: ease 0.1s;
-}
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background-color: #9a9a9a46;
-    transform: scale(0);
-    animation: ripple-animation 0.6s linear;
-}
-@keyframes ripple-animation {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-.links-Translate {
-    display: flex;
-    align-items: center;
-    padding: 5px 7px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-.Fy0Xbe {
-  margin-right: 6px;
-  background: url(https://github.com/Tybascript1234/Languag/blob/main/image/flags.png?raw=true) no-repeat 0 0;
-  background-size: 24px 3876px;
-  width: 22.7px;
-  height: 15.8px;
-  overflow: hidden;
-  border: solid 1px #0000000f;
-}
-.links-Translate-div {
-  user-select: none;
-  overflow: hidden;
-  animation: gallery 0.2s ease forwards;
-  z-index: 50;
-  width: 210px;
-  font-size: 16px;
-  padding-top: 4px;
-  padding-bottom: 8px;
-  box-shadow: 0px 2px 7px #00000046, 0px 1px 1px #0000004f;
-  border-radius: 16px;
-  background-color: white;
-}
-.links-Translate-search {
-  position: relative;
-  justify-content: left;
-  transition: ease 0.2s;
-  display: flex;
-  align-items: center;
-  padding: 6px 1px;
-  /* background: aliceblue; */
-  outline: solid 1px #cccccc8a;
-  border-radius: 14px;
-  /* justify-content: right; */
-  padding-right: 9px;
-  margin-bottom: 8px;
-  margin-right: 4px;
-  margin-left: 4px;
-}
-.links-Translate-search:hover {
-  outline: solid 1px #cccccc;
-}
-.links-Translate-search svg {
-  margin: 0px 10px;
-  width: 14px;
-  height: 14px;
-  opacity: .9;
-}
-.check-lang {
-    position: absolute;
-    right: 0;
-    margin-right: 8px;
-    height: 20px;
-    fill: #1884ff;
-}
-.links-Translate-search input {
-  transition: ease 0.2s;
-  z-index: 4;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  width: 159px;
-  border-radius: 15px;
-  position: absolute;
-  left: 0;
-  background: #0000;
-  height: -webkit-fill-available;
-  padding-left: 34px;
-  width: -webkit-fill-available;
-}
-.links-Translate-search input:focus {
-  box-shadow: 0 0 0 1px #1884ff;
-}
-#translation_buttons {
-  max-height: 296px;
-  overflow-y: auto;
-  /* scrollbar-width: none; */
-}
-#translation_buttons::-webkit-scrollbar {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-}
-
-/* تخصيص مسار الشريط */
-#translation_buttons::-webkit-scrollbar-track {
-  background: #f1f1f100; /* لون الخلفية */
-  border-radius: 10px; /* زاوية دائرية */
-}
-
-/* تخصيص المقبض */
-#translation_buttons::-webkit-scrollbar-thumb {
-  background: #b8b8b800; /* لون المقبض */
-  border-radius: 10px; /* زاوية دائرية */
-}
-
-/* تغيير لون المقبض عند التمرير */
-#translation_buttons:hover::-webkit-scrollbar-thumb {
-  background: #c9c9c9;
-}
-
-/* تخصيص الشريط الأفقي */
-#translation_buttons::-webkit-scrollbar-horizontal {
-  height: 12px; /* ارتفاع الشريط */
-}
-/* ---- */
-.Translate-div {
-  outline-color: #0991ff;
-  font-family: Almarai;
-  border-radius: 0px 25px 25px 0px;
-  margin-right: 8px;
-  position: relative;
-  font-weight: 400;
-  width: 95%;
-  border: none;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  height: 32px;
-  padding: 0 8px;
-  background-color: #00000000;
-}
-.Translate-div .ripple {
-  background-color: #2f84d418;
-}
-.Translate-div:hover:before {
-  transition: ease 0.2s;
-  display: flex;
-  content: "";
-  position: absolute;
-  left: 0px;
-  padding: 10px 2px;
-  border-radius: 0px 14px 14px 0px;
-  background-color: #1884ff;
-}
-.Translate-div:active::before {
-  background-color: #066fe7;
-  padding: 7px 2px;
-}
-.Translate-div:hover {
-  background-color: #0084ff09;
-}
-.Translate-div:focus {
-  background-color: #0084ff09;
-}
-.Translate-div-tr:active .Translate-div-div-span {
-    background-color: #066fe7;
-    padding: 7px 2px;
-}
-.Translate-div-div-span {
-    transition: ease 0.2s;
-    position: absolute;
-    left: 0px;
-    padding: 10px 2px;
-    border-radius: 0px 14px 14px 0px;
-    background-color: #1884ff;
-}
-.Translate-div-tr {
-    font-weight: 400;
-    width: 100%;
-    border: none;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: 37px;
-    padding: 0 8px;
-    background-color: #0084ff09;
-}
-.Translate-div,.Translate-div-tr a {
-    color: #474e58;
-    font-size: 14px;
-    line-height: 0;
-}
-@media screen and (max-width: 768px) {
-  body .Translate-div {
-    cursor: context-menu;
-  }
-}
-@media screen and (max-height: 300px) {
-    body #translation_buttons {
-       max-height: 192px;
-    }
-}
-    </style>
 </head>
 <body>
+  <h1>Hello</h1>
     <div class="links-Tran links-a">
         <!-- <div class="links-Translate xox" id="toggleButtonss1" onclick="toggleDivA(event, 'bbb1')"><div id="language_background" class="Fy0Xbe" style="background-position: -1px -69px;" aria-hidden="true"></div><a id="selected_language" class="notranslate">English</a></div> -->
         <!-- Translate -->
             <div class="links-Translate-div dide xox" id="bbb1">
               <div class="links-Translate-search"><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24"><path d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"/></svg><input type="search" id="button_search_input" oninput="searchLanguage()"  placeholder="Search Languages"></div>
                 <div id="translation_buttons">
-                <button id="btn_en" onclick="selectLanguage('en')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="en"><div class="Fy0Xbe" style="background-position: -1px -69px;" aria-hidden="true"></div><a>English</a></button>
-<button id="btn_fr" onclick="selectLanguage('zh-CN')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="zh-CN"><div class="Fy0Xbe" style="background-position: -1px -1072px;" aria-hidden="true"></div><a>Chinese</a></button>
-<button id="btn_fr" onclick="selectLanguage('hi')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="hi"><div class="Fy0Xbe" style="background-position: -1px -2245px;" aria-hidden="true"></div><a>Hindi</a></button>
-<button id="btn_fr" onclick="selectLanguage('es')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="es"><div class="Fy0Xbe" style="background-position: -1px -1480px;" aria-hidden="true"></div><a>Spanish</a></button>
-<button id="btn_fr" onclick="selectLanguage('fr')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="fr"><div class="Fy0Xbe" style="background-position: -1px -324px;" aria-hidden="true"></div><a>French</a></button>
-<button id="btn_fr" onclick="selectLanguage('ar')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="ar"><div class="Fy0Xbe" style="background-position: -1px -52px;" aria-hidden="true"></div><a>العربية</a></button>
-<button id="btn_fr" onclick="selectLanguage('pt')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="pt"><div class="Fy0Xbe" style="background-position: -1px -664px;" aria-hidden="true"></div><a>Portuguese</a></button>
-<button id="btn_fr" onclick="selectLanguage('de')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="de"><div class="Fy0Xbe" style="background-position: -1px -3452px;" aria-hidden="true"></div><a>German</a></button>
-<button id="btn_fr" onclick="selectLanguage('ja')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="ja"><div class="Fy0Xbe" style="background-position: -1px -528px;" aria-hidden="true"></div><a>Japanese</a></button>
-<button id="btn_fr" onclick="selectLanguage('ko')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="ko"><div class="Fy0Xbe" style="background-position: -1px -3078px;" aria-hidden="true"></div><a>Korean</a></button>
-<button id="btn_fr" onclick="selectLanguage('it')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="it"><div class="Fy0Xbe" style="background-position: -1px -154px;" aria-hidden="true"></div><a>Italian</a></button>
-<button id="btn_fr" onclick="selectLanguage('tr')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="tr"><div class="Fy0Xbe" style="background-position: -1px -2126px;" aria-hidden="true"></div><a>Turkish</a></button>
-<button id="btn_fr" onclick="selectLanguage('vi')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="vi"><div class="Fy0Xbe" style="background-position: -1px -1259px;" aria-hidden="true"></div><a>Vietnamese</a></button>
-<button id="btn_fr" onclick="selectLanguage('bn')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="bn"><div class="Fy0Xbe" style="background-position: -1px -2364px;" aria-hidden="true"></div><a>Bengali</a></button>
-<button id="btn_fr" onclick="selectLanguage('pl')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="pl"><div class="Fy0Xbe" style="background-position: -1px -1514px;" aria-hidden="true"></div><a>Polish</a></button>
-<button id="btn_fr" onclick="selectLanguage('fa')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="fa"><div class="Fy0Xbe" style="background-position: -1px -2738px;" aria-hidden="true"></div><a>Persian</a></button>
-<button id="btn_fr" onclick="selectLanguage('sv')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="sv"><div class="Fy0Xbe" style="background-position: -1px -494px;" aria-hidden="true"></div><a>Swedish</a></button>
-<button id="btn_fr" onclick="selectLanguage('ms')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="ms"><div class="Fy0Xbe" style="background-position: -1px -2517px;" aria-hidden="true"></div><a>Malay</a></button>
-<button id="btn_fr" onclick="selectLanguage('uk')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="uk"><div class="Fy0Xbe" style="background-position: -1px -2721px;" aria-hidden="true"></div><a>Ukrainian</a></button>
-<button id="btn_fr" onclick="selectLanguage('no')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="no"><div class="Fy0Xbe" style="background-position: -1px -1089px;" aria-hidden="true"></div><a>Norwegian</a></button>
-<button id="btn_fr" onclick="selectLanguage('ro')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="ro"><div class="Fy0Xbe" style="background-position: -1px -885px;" aria-hidden="true"></div><a>Romanian</a></button>
-<button id="btn_fr" onclick="selectLanguage('th')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="th"><div class="Fy0Xbe" style="background-position: -1px -1242px;" aria-hidden="true"></div><a>Thai</a></button>
-<button id="btn_fr" onclick="selectLanguage('fi')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="fi"><div class="Fy0Xbe" style="background-position: -1px -2568px;" aria-hidden="true"></div><a>Finnish</a></button>
-<button id="btn_fr" onclick="selectLanguage('cs')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="cs"><div class="Fy0Xbe" style="background-position: -1px -3095px;" aria-hidden="true"></div><a>Czech</a></button>
-<button id="btn_fr" onclick="selectLanguage('el')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="el"><div class="Fy0Xbe" style="background-position: -1px -188px;" aria-hidden="true"></div><a>Greek</a></button>
-<button id="btn_fr" onclick="selectLanguage('nl')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="nl"><div class="Fy0Xbe" style="background-position: -1px -1888px;" aria-hidden="true"></div><a>Dutch</a></button>
-<button id="btn_fr" onclick="selectLanguage('da')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="da"><div class="Fy0Xbe" style="background-position: -1px -1820px;" aria-hidden="true"></div><a>Danish</a></button>
-<button id="btn_fr" onclick="selectLanguage('it')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="it"><div class="Fy0Xbe" style="background-position: -1px -154px;" aria-hidden="true"></div><a>Italian</a></button>
-<button id="btn_fr" onclick="selectLanguage('hu')" class="Translate-div notranslate ripple-btn" onmousedown="createRipple(event)" data-lang="hu"><div class="Fy0Xbe" style="background-position: -1px -902px;" aria-hidden="true"></div><a>Hungarian</a></button>
+                <button id="btn_en" onclick="selectLanguage('en')" class="Translate-div notranslate wave-button" data-lang="en"><la></la><div class="Fy0Xbe" style="background-position: -1px -69px;" aria-hidden="true"></div><a>English</a></button>
+<button id="btn_fr" onclick="selectLanguage('zh-CN')" class="Translate-div notranslate wave-button" data-lang="zh-CN"><la></la><div class="Fy0Xbe" style="background-position: -1px -1072px;" aria-hidden="true"></div><a>Chinese</a></button>
+<button id="btn_fr" onclick="selectLanguage('hi')" class="Translate-div notranslate wave-button" data-lang="hi"><la></la><div class="Fy0Xbe" style="background-position: -1px -2245px;" aria-hidden="true"></div><a>Hindi</a></button>
+<button id="btn_fr" onclick="selectLanguage('es')" class="Translate-div notranslate wave-button" data-lang="es"><la></la><div class="Fy0Xbe" style="background-position: -1px -1480px;" aria-hidden="true"></div><a>Spanish</a></button>
+<button id="btn_fr" onclick="selectLanguage('fr')" class="Translate-div notranslate wave-button" data-lang="fr"><la></la><div class="Fy0Xbe" style="background-position: -1px -324px;" aria-hidden="true"></div><a>French</a></button>
+<button id="btn_fr" onclick="selectLanguage('ar')" class="Translate-div notranslate wave-button" data-lang="ar"><la></la><div class="Fy0Xbe" style="background-position: -1px -52px;" aria-hidden="true"></div><a>العربية</a></button>
+<button id="btn_fr" onclick="selectLanguage('pt')" class="Translate-div notranslate wave-button" data-lang="pt"><la></la><div class="Fy0Xbe" style="background-position: -1px -664px;" aria-hidden="true"></div><a>Portuguese</a></button>
+<button id="btn_fr" onclick="selectLanguage('de')" class="Translate-div notranslate wave-button" data-lang="de"><la></la><div class="Fy0Xbe" style="background-position: -1px -3452px;" aria-hidden="true"></div><a>German</a></button>
+<button id="btn_fr" onclick="selectLanguage('ja')" class="Translate-div notranslate wave-button" data-lang="ja"><la></la><div class="Fy0Xbe" style="background-position: -1px -528px;" aria-hidden="true"></div><a>Japanese</a></button>
+<button id="btn_fr" onclick="selectLanguage('ko')" class="Translate-div notranslate wave-button" data-lang="ko"><la></la><div class="Fy0Xbe" style="background-position: -1px -3078px;" aria-hidden="true"></div><a>Korean</a></button>
+<button id="btn_fr" onclick="selectLanguage('it')" class="Translate-div notranslate wave-button" data-lang="it"><la></la><div class="Fy0Xbe" style="background-position: -1px -154px;" aria-hidden="true"></div><a>Italian</a></button>
+<button id="btn_fr" onclick="selectLanguage('tr')" class="Translate-div notranslate wave-button" data-lang="tr"><la></la><div class="Fy0Xbe" style="background-position: -1px -2126px;" aria-hidden="true"></div><a>Turkish</a></button>
+<button id="btn_fr" onclick="selectLanguage('vi')" class="Translate-div notranslate wave-button" data-lang="vi"><la></la><div class="Fy0Xbe" style="background-position: -1px -1259px;" aria-hidden="true"></div><a>Vietnamese</a></button>
+<button id="btn_fr" onclick="selectLanguage('bn')" class="Translate-div notranslate wave-button" data-lang="bn"><la></la><div class="Fy0Xbe" style="background-position: -1px -2364px;" aria-hidden="true"></div><a>Bengali</a></button>
+<button id="btn_fr" onclick="selectLanguage('pl')" class="Translate-div notranslate wave-button" data-lang="pl"><la></la><div class="Fy0Xbe" style="background-position: -1px -1514px;" aria-hidden="true"></div><a>Polish</a></button>
+<button id="btn_fr" onclick="selectLanguage('fa')" class="Translate-div notranslate wave-button" data-lang="fa"><la></la><div class="Fy0Xbe" style="background-position: -1px -2738px;" aria-hidden="true"></div><a>Persian</a></button>
+<button id="btn_fr" onclick="selectLanguage('sv')" class="Translate-div notranslate wave-button" data-lang="sv"><la></la><div class="Fy0Xbe" style="background-position: -1px -494px;" aria-hidden="true"></div><a>Swedish</a></button>
+<button id="btn_fr" onclick="selectLanguage('ms')" class="Translate-div notranslate wave-button" data-lang="ms"><la></la><div class="Fy0Xbe" style="background-position: -1px -2517px;" aria-hidden="true"></div><a>Malay</a></button>
+<button id="btn_fr" onclick="selectLanguage('uk')" class="Translate-div notranslate wave-button" data-lang="uk"><la></la><div class="Fy0Xbe" style="background-position: -1px -2721px;" aria-hidden="true"></div><a>Ukrainian</a></button>
+<button id="btn_fr" onclick="selectLanguage('no')" class="Translate-div notranslate wave-button" data-lang="no"><la></la><div class="Fy0Xbe" style="background-position: -1px -1089px;" aria-hidden="true"></div><a>Norwegian</a></button>
+<button id="btn_fr" onclick="selectLanguage('ro')" class="Translate-div notranslate wave-button" data-lang="ro"><la></la><div class="Fy0Xbe" style="background-position: -1px -885px;" aria-hidden="true"></div><a>Romanian</a></button>
+<button id="btn_fr" onclick="selectLanguage('th')" class="Translate-div notranslate wave-button" data-lang="th"><la></la><div class="Fy0Xbe" style="background-position: -1px -1242px;" aria-hidden="true"></div><a>Thai</a></button>
+<button id="btn_fr" onclick="selectLanguage('fi')" class="Translate-div notranslate wave-button" data-lang="fi"><la></la><div class="Fy0Xbe" style="background-position: -1px -2568px;" aria-hidden="true"></div><a>Finnish</a></button>
+<button id="btn_fr" onclick="selectLanguage('cs')" class="Translate-div notranslate wave-button" data-lang="cs"><la></la><div class="Fy0Xbe" style="background-position: -1px -3095px;" aria-hidden="true"></div><a>Czech</a></button>
+<button id="btn_fr" onclick="selectLanguage('el')" class="Translate-div notranslate wave-button" data-lang="el"><la></la><div class="Fy0Xbe" style="background-position: -1px -188px;" aria-hidden="true"></div><a>Greek</a></button>
+<button id="btn_fr" onclick="selectLanguage('nl')" class="Translate-div notranslate wave-button" data-lang="nl"><la></la><div class="Fy0Xbe" style="background-position: -1px -1888px;" aria-hidden="true"></div><a>Dutch</a></button>
+<button id="btn_fr" onclick="selectLanguage('da')" class="Translate-div notranslate wave-button" data-lang="da"><la></la><div class="Fy0Xbe" style="background-position: -1px -1820px;" aria-hidden="true"></div><a>Danish</a></button>
+<button id="btn_fr" onclick="selectLanguage('hu')" class="Translate-div notranslate wave-button" data-lang="hu"><la></la><div class="Fy0Xbe" style="background-position: -1px -902px;" aria-hidden="true"></div><a>Hungarian</a></button>
+<!-- --- -->
+<button id="btn_fr" onclick="selectLanguage('bg')" class="Translate-div notranslate wave-button" data-lang="bg"><la></la><div class="Fy0Xbe" style="background-position: -1px -3537px;" aria-hidden="true"></div><a>Bulgarian</a></button>
+<button id="btn_fr" onclick="selectLanguage('et')" class="Translate-div notranslate wave-button" data-lang="et"><la></la><div class="Fy0Xbe" style="background-position: -1px -3333px;" aria-hidden="true"></div><a>Estonian</a></button>
+<button id="btn_fr" onclick="selectLanguage('lt')" class="Translate-div notranslate wave-button" data-lang="lt"><la></la><div class="Fy0Xbe" style="background-position: -1px -1446px" aria-hidden="true"></div><a>Lithuanian</a></button>
+<button id="btn_fr" onclick="selectLanguage('lv')" class="Translate-div notranslate wave-button" data-lang="lv"><la></la><div class="Fy0Xbe" style="background-position: -1px -2619px;" aria-hidden="true"></div><a>Latvian</a></button>
+<button id="btn_fr" onclick="selectLanguage('sk')" class="Translate-div notranslate wave-button" data-lang="sk"><la></la><div class="Fy0Xbe" style="background-position: -1px -3044px;" aria-hidden="true"></div><a>Slovak</a></button>
+<button id="btn_fr" onclick="selectLanguage('sl')" class="Translate-div notranslate wave-button" data-lang="sl"><la></la><div class="Fy0Xbe" style="background-position: -1px -1582px;" aria-hidden="true"></div><a>Slovenian</a></button>
+<button id="btn_fr" onclick="selectLanguage('sr')" class="Translate-div notranslate wave-button" data-lang="sr"><la></la><div class="Fy0Xbe" style="background-position: -1px -3401px;" aria-hidden="true"></div><a>Serbian</a></button>
+<button id="btn_fr" onclick="selectLanguage('id')" class="Translate-div notranslate wave-button" data-lang="id"><la></la><div class="Fy0Xbe" style="background-position: -1px -2653px" aria-hidden="true"></div><a>Indonesian</a></button>
+<button id="btn_fr" onclick="selectLanguage('ur')" class="Translate-div notranslate wave-button" data-lang="ur"><la></la><div class="Fy0Xbe" style="background-position: -1px -2245px;" aria-hidden="true"></div><a>Urdu</a></button>
+<button id="btn_fr" onclick="selectLanguage('ta')" class="Translate-div notranslate wave-button" data-lang="ta"><la></la><div class="Fy0Xbe" style="background-position: -1px -2245px;" aria-hidden="true"></div><a>Tamil</a></button>
+<button id="btn_fr" onclick="selectLanguage('te')" class="Translate-div notranslate wave-button" data-lang="te"><la></la><div class="Fy0Xbe" style="background-position: -1px -2245px;" aria-hidden="true"></div><a>Telugu</a></button>
+<button id="btn_fr" onclick="selectLanguage('ml')" class="Translate-div notranslate wave-button" data-lang="ml"><la></la><div class="Fy0Xbe" style="background-position: -1px -2245px;" aria-hidden="true"></div><a>Malayalam</a></button>
+<button id="btn_fr" onclick="selectLanguage('mr')" class="Translate-div notranslate wave-button" data-lang="mr"><la></la><div class="Fy0Xbe" style="background-position: -1px -2245px;" aria-hidden="true"></div><a>Marathi</a></button>
+<button id="btn_fr" onclick="selectLanguage('kn')" class="Translate-div notranslate wave-button" data-lang="kn"><la></la><div class="Fy0Xbe" style="background-image: url(image/Kannada.png);background-size: cover;" aria-hidden="true"></div><a>Kannada</a></button>
+<button id="btn_fr" onclick="selectLanguage('az')" class="Translate-div notranslate wave-button" data-lang="az"><la></la><div class="Fy0Xbe" style="background-position: -1px -1599px;" aria-hidden="true"></div><a>Azerbaijani</a></button>
+<button id="btn_fr" onclick="selectLanguage('am')" class="Translate-div notranslate wave-button" data-lang="am"><la></la><div class="Fy0Xbe" style="background-position: -1px -3367px;" aria-hidden="true"></div><a>Amharic</a></button>
+<button id="btn_fr" onclick="selectLanguage('kk')" class="Translate-div notranslate wave-button" data-lang="kk"><la></la><div class="Fy0Xbe" style="background-position: -1px -1565px;" aria-hidden="true"></div><a>Kazakh</a></button>
+<button id="btn_fr" onclick="selectLanguage('my')" class="Translate-div notranslate wave-button" data-lang="my"><la></la><div class="Fy0Xbe" style="background-position: -1px -18px;" aria-hidden="true"></div><a>Burmese</a></button>
+<button id="btn_fr" onclick="selectLanguage('si')" class="Translate-div notranslate wave-button" data-lang="si"><la></la><div class="Fy0Xbe" style="background-position: -1px -3622px;" aria-hidden="true"></div><a>Sinhala</a></button>
 
                 <div id="no_results_message" class="notranslate" style="display:none;font-family: system-ui;padding: 0px 14px;font-size: 14px;color: rgb(142, 142, 142);">No results found for "<span id="searched_query_display" style="color: #1d1d1d;margin: 0 3px;font-weight: 600;"></span>"</div>
               </div>
+              <span class="notranslate" style="position: absolute;bottom: 0;right: 0;margin: 8px;opacity: .2;font-size: 13px;">Egypt Languag</span>
             </div>
         </div>
     
@@ -376,63 +156,6 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         }
     }
 
-    // Create ripple effect for buttons
-    function createRipple(event) {
-        const button = event.currentTarget;
-        const ripple = document.createElement("span");
-        const rect = button.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = event.clientX - rect.left - size / 2;
-        const y = event.clientY - rect.top - size / 2;
-
-        ripple.style.width = ripple.style.height = `${size}px`;
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
-
-        ripple.classList.add("ripple");
-        button.appendChild(ripple);
-
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-    }
-
-    // Get the language name based on the language code
-    function getLanguageName(langCode) {
-        switch (langCode) {
-            case 'en': return 'English';
-            case 'ar': return 'Arabic';
-            case 'ur': return 'Urdu';
-            case 'tr': return 'Turkish';
-            case 'fr': return 'French';
-            case 'ja': return 'Japanese';
-            case 'zh-CN': return 'Chinese';
-            case 'ru': return 'Russian';
-            case 'es': return 'Spanish';
-            case 'ko': return 'Korean';
-            case 'ms': return 'Malay';
-            case 'it': return 'Italian';
-            case 'pt': return 'Portuguese';
-            case 'th': return 'Thai';
-            case 'sv': return 'Swedish';
-            case 'uk': return 'Ukrainian';
-            case 'hi': return 'Hindi';
-            case 'bn': return 'Bengali';
-            case 'vi': return 'Vietnamese';
-            case 'fa': return 'Persian';
-            case 'pl': return 'Polish';
-            case 'nl': return 'Dutch';
-            case 'no': return 'Norwegian';
-            case 'cs': return 'Czech';
-            case 'el': return 'Greek';
-            case 'ro': return 'Romanian';
-            case 'da': return 'Danish';
-            case 'fi': return 'Finnish';
-            case 'hu': return 'Hungarian';
-            default: return 'Unknown';
-        }
-    }
-
     // Search functionality for translation buttons
     function searchLanguage() {
         const searchInputField = document.getElementById('button_search_input');
@@ -488,6 +211,6 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
 
     
 
-<!--     <script src="tr.js"></script> -->
+    <script src="tr.js"></script>
 </body>
 </html>
