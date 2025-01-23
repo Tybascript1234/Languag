@@ -331,7 +331,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
 
                 <div id="no_results_message" class="notranslate" style="display:none;font-family: system-ui;padding: 0px 14px;font-size: 14px;color: rgb(142, 142, 142);">No results found for "<span id="searched_query_display" style="color: #1d1d1d;margin: 0 3px;font-weight: 600;"></span>"</div>
               </div>
-              <span class="notranslate" style="position: absolute;bottom: 0;right: 0;margin: 8px;opacity: .2;font-size: 13px;">Egypt</span>
+              <span class="notranslate" style="position: absolute;bottom: 0;right: 0;margin: 8px 12px;opacity: .2;font-size: 13px;">Egypt</span>
             </div>
         </div>
     
@@ -456,65 +456,6 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
         restoreLastSelectedLanguage(); // Restore language on page load
         setTimeout(googleTranslateElementInit, 1000); // Wait for the Google Translate widget to load
     };
-
-
-// repply
-
-// -----------------------------------------------------------------------------------------------------    
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const elements = document.querySelectorAll('.wave-button');
-    
-    elements.forEach(element => {
-
-      let isRippleActive = false; // منع الموجة من التكرار إذا كانت مفعلة بالفعل
-
-      function createRipple(e) {
-        if (isRippleActive) return; // إذا كانت الموجة مفعلة بالفعل لا تنشأ موجة جديدة
-
-        isRippleActive = true; // تفعيل الموجة
-
-        const ripple = document.createElement('span');
-        const rect = element.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-
-        let x, y;
-        if (e.clientX && e.clientY) {
-          x = e.clientX - rect.left - size / 2;
-          y = e.clientY - rect.top - size / 2;
-        } 
-        else if (e.touches && e.touches[0]) {
-          x = e.touches[0].clientX - rect.left - size / 2;
-          y = e.touches[0].clientY - rect.top - size / 2;
-        }
-
-        ripple.style.width = ripple.style.height = `${size}px`;
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
-        ripple.classList.add('ripple');
-
-        element.appendChild(ripple);
-
-        // إزالة الموجة بعد انتهاء الأنيميشن
-        setTimeout(() => {
-          ripple.remove();
-          isRippleActive = false; // إعادة تفعيل إمكانية إضافة موجة جديدة
-        }, 600); // مدة الأنيميشن للموجة
-      }
-
-      element.addEventListener('mousedown', (e) => {
-        createRipple(e); // أنشئ الموجة عند الضغط
-      });
-
-      element.addEventListener('touchstart', (e) => {
-        createRipple(e); // أنشئ الموجة عند اللمس
-      });
-    });
-  });
-
-//   ---------------------------------------------------------------------------------
-
 
 
 
