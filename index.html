@@ -464,7 +464,10 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
 
 window.addEventListener("load", function () {
     setTimeout(() => {
-        initializeWaveButtons();
+        // تأكد من أنه لا توجد رسائل JavaScript قبل تنفيذ الموجة
+        if (!window.alertOpen) {
+            initializeWaveButtons();
+        }
     }, 100); // تأخير بسيط للتأكد من تحميل العناصر
 
     function initializeWaveButtons() {
@@ -508,7 +511,17 @@ window.addEventListener("load", function () {
             element.addEventListener('touchstart', createRipple);
         });
     }
+
+    // إضافة شرط للتحقق من رسائل JavaScript
+    window.alert = function () {
+        window.alertOpen = true;
+        // يمكنك إضافة منطق هنا لإغلاق أو التعامل مع الرسائل بعد ذلك
+        setTimeout(() => {
+            window.alertOpen = false;
+        }, 1000); // بعد مرور ثانية، إعادة تعيين حالة التنبيه
+    };
 });
+
 
 
 
