@@ -364,7 +364,7 @@ function googleTranslateElementInit() {
 // Check language and set text direction
 function checkLanguageDirection() {
     var currentLang = document.querySelector('.goog-te-combo').value;
-    var inputElements = document.querySelectorAll('input[type="text"], textarea');
+    var inputElements = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], textarea');
     
     if (currentLang === 'ar') { // Arabic
         inputElements.forEach(function(element) {
