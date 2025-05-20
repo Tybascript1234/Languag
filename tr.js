@@ -37,9 +37,7 @@ function getLanguageName(langCode) {
         case 'sk': return 'Slovak';
         case 'sl': return 'Slovenian';
         case 'sr': return 'Serbian';
-        case 'he': return 'Hebrew';
         case 'id': return 'Indonesian';
-        case 'ur': return 'Urdu';
         case 'ta': return 'Tamil';
         case 'te': return 'Telugu';
         case 'ml': return 'Malayalam';
@@ -50,6 +48,73 @@ function getLanguageName(langCode) {
         case 'kk': return 'Kazakh';
         case 'my': return 'Burmese';
         case 'si': return 'Sinhala';
+        
+        // First batch of 30 new languages
+        case 'af': return 'Afrikaans';
+        case 'sq': return 'Albanian';
+        case 'hy': return 'Armenian';
+        case 'eu': return 'Basque';
+        case 'be': return 'Belarusian';
+        case 'bs': return 'Bosnian';
+        case 'ca': return 'Catalan';
+        case 'hr': return 'Croatian';
+        case 'eo': return 'Esperanto';
+        case 'tl': return 'Filipino';
+        case 'gl': return 'Galician';
+        case 'ka': return 'Georgian';
+        case 'gu': return 'Gujarati';
+        case 'ht': return 'Haitian Creole';
+        case 'ha': return 'Hausa';
+        case 'is': return 'Icelandic';
+        case 'ig': return 'Igbo';
+        case 'ga': return 'Irish';
+        case 'jw': return 'Javanese';
+        case 'km': return 'Khmer';
+        case 'ku': return 'Kurdish';
+        case 'ky': return 'Kyrgyz';
+        case 'lo': return 'Lao';
+        case 'la': return 'Latin';
+        case 'lb': return 'Luxembourgish';
+        case 'mk': return 'Macedonian';
+        case 'mg': return 'Malagasy';
+        case 'mt': return 'Maltese';
+        case 'mi': return 'Maori';
+        case 'mn': return 'Mongolian';
+        case 'ne': return 'Nepali';
+        
+        // Second batch of 30 new languages
+        case 'ps': return 'Pashto';
+        case 'pa': return 'Punjabi';
+        case 'qu': return 'Quechua';
+        case 'rw': return 'Kinyarwanda';
+        case 'sm': return 'Samoan';
+        case 'gd': return 'Scottish Gaelic';
+        case 'sn': return 'Shona';
+        case 'sd': return 'Sindhi';
+        case 'so': return 'Somali';
+        case 'su': return 'Sundanese';
+        case 'tg': return 'Tajik';
+        case 'tt': return 'Tatar';
+        case 'ti': return 'Tigrinya';
+        case 'tk': return 'Turkmen';
+        case 'ug': return 'Uyghur';
+        case 'uz': return 'Uzbek';
+        case 'cy': return 'Welsh';
+        case 'xh': return 'Xhosa';
+        case 'yi': return 'Yiddish';
+        case 'yo': return 'Yoruba';
+        case 'zu': return 'Zulu';
+        case 'ny': return 'Chichewa';
+        case 'ce': return 'Chechen';
+        case 'co': return 'Corsican';
+        case 'cr': return 'Cree';
+        case 'dv': return 'Dhivehi';
+        case 'ee': return 'Ewe';
+        case 'fj': return 'Fijian';
+        case 'kl': return 'Kalaallisut';
+        case 'ln': return 'Lingala';
+        case 'sg': return 'Sango';
+        
         default: return 'Unknown';
     }
 }
