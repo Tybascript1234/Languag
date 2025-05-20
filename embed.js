@@ -1,10 +1,11 @@
 (function () {
   const fileURL = "https://tybascript1234.github.io/Languag/";
 
+  // تحميل ملف HTML
   fetch(fileURL)
     .then((response) => {
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error("Failed to load the file");
       }
       return response.text();
     })
@@ -15,11 +16,13 @@
       const scripts = tempDiv.querySelectorAll("script");
       const bodyContent = tempDiv.querySelector("body")?.innerHTML || content;
 
+      // إدخال المحتوى إلى صفحة المستخدم
       const targetContainer = document.getElementById("target-container");
       if (targetContainer) {
         targetContainer.innerHTML = bodyContent;
       }
 
+      // تشغيل السكربتات الموجودة في الملف
       scripts.forEach((script) => {
         const newScript = document.createElement("script");
         if (script.src) {
@@ -30,28 +33,30 @@
         document.body.appendChild(newScript);
       });
 
+      // تأكد من تحميل مكتبة Google Translate
       ensureGoogleTranslateLoaded();
     })
-    .catch((error) => {
-      console.error("Error loading the file:", error);
-      // عرض رسالة للمستخدم إذا لزم الأمر
-      alert("Failed to load content. Please check the URL or try again later.");
-    });
+    .catch((error) => console.error("Error loading the file:", error));
 
+  // التحقق من تحميل Google Translate
   function ensureGoogleTranslateLoaded() {
-    const maxAttempts = 10;
-    let attempts = 0;
-
     const interval = setInterval(() => {
-      attempts++;
       const translateElement = document.querySelector(".goog-te-combo");
       if (translateElement) {
         clearInterval(interval);
         console.log("Google Translate is ready.");
-      } else if (attempts >= maxAttempts) {
-        clearInterval(interval);
+      } else {
+        console.log("Google Translate element not found yet...");
+      }
+    }, 200);
+
+    // بعد مدة محددة، إذا لم يتم العثور على العنصر، أبلغ عن خطأ
+    setTimeout(() => {
+      clearInterval(interval);
+      const translateElement = document.querySelector(".goog-te-combo");
+      if (!translateElement) {
         console.error("Google Translate did not load in time.");
       }
-    }, 500);
+    }, 10000); // Increased timeout to 10 seconds
   }
 })();
