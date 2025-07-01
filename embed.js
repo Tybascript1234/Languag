@@ -1,6 +1,6 @@
 (function () {
   // Updated URL with correct spelling and specific file
-  const fileURL = "https://tybascript1234.github.io/Language/index.html";
+  const fileURL = "https://tybascript1234.github.io/Languag/index.html";
 
   // تحميل ملف HTML
   fetch(fileURL)
