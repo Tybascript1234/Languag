@@ -1,11 +1,12 @@
 (function () {
-  const fileURL = "https://tybascript1234.github.io/Languag/";
+  // Updated URL with correct spelling and specific file
+  const fileURL = "https://tybascript1234.github.io/Language/index.html";
 
   // تحميل ملف HTML
   fetch(fileURL)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Failed to load the file");
+        throw new Error(`Failed to load the file (HTTP ${response.status})`);
       }
       return response.text();
     })
@@ -36,7 +37,18 @@
       // تأكد من تحميل مكتبة Google Translate
       ensureGoogleTranslateLoaded();
     })
-    .catch((error) => console.error("Error loading the file:", error));
+    .catch((error) => {
+      console.error("Error loading the file:", error);
+      // عرض رسالة للمستخدم في حال فشل التحميل
+      const targetContainer = document.getElementById("target-container");
+      if (targetContainer) {
+        targetContainer.innerHTML = `
+          <div style="color: red; padding: 10px; border: 1px solid red;">
+            Error loading translation content: ${error.message}
+          </div>
+        `;
+      }
+    });
 
   // التحقق من تحميل Google Translate
   function ensureGoogleTranslateLoaded() {
@@ -56,7 +68,8 @@
       const translateElement = document.querySelector(".goog-te-combo");
       if (!translateElement) {
         console.error("Google Translate did not load in time.");
+        // يمكنك إضافة رسالة للمستخدم هنا إذا لزم الأمر
       }
-    }, 10000); // Increased timeout to 10 seconds
+    }, 10000);
   }
 })();
