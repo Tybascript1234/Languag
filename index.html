@@ -234,6 +234,7 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
   border: none;
   display: flex;
   align-items: center;
+  justify-content: left;
   cursor: pointer;
   height: 32px;
   padding: 0 8px;
@@ -312,7 +313,11 @@ body .VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q {
   direction: ltr;
 }
 body .selected-lang-button {
-    background-color: rgb(194 231 255) !important;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: rgb(194 231 255) !important;
 }
 body .selected-lang-button:focus {
   border: none;
