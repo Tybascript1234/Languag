@@ -113,7 +113,7 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: none;
   height: 20px;
   width: 20px;
-  background: url('https://raw.githubusercontent.com/Tybascript1234/Languag/d651a73803437353507af3dcc3d553a92e3b6859/image/cross.svg') no-repeat center;
+  background: url('image/cross.svg') no-repeat center;
   background-size: contain;
   cursor: pointer;
 }
@@ -362,336 +362,304 @@ body #ffrrelang12345:hover {
     </style>
 </head>
 <body>
-  <div id="google_translate_element"></div>
-   <div class="links-Tran links-a">
-        <div class="links-Translate-div dide xox" id="bbb1">
-          <div class="links-Translate-search"><label id="ffrrelang12345" for="button_search_input"><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24"><path d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"/></svg></label><input type="search" id="button_search_input" oninput="searchLanguage()"  placeholder="Search Languages"></div>
-            <div id="translation_buttons"></div>
-            <div id="no_results_message" class="tran-rtl123" style="display:none;font-family: system-ui;padding: 0px 14px;font-size: 14px;color: rgb(142, 142, 142);overflow-wrap: break-word;">No results found for <div>"<span id="searched_query_display" style="color: #1d1d1d;margin: 0 3px;font-weight: 600;"></span>"</div></div>
-          <span class="notranslate" style="position: absolute;bottom: 0;right: 0;margin: 8px 12px;opacity: .2;font-size: 13px;">Egypt [100] langs</span>
-          <div class="reload-12345-lang"></div>
-        </div>
-    </div>
-
-<script>
-// كل اللغات مع كل البيانات الضرورية
-const languages = [
-  // الشائعة
-  { id: 'en', name: 'English', icon: '-1px -69px' },
-  { id: 'zh-CN', name: 'Chinese', icon: '-1px -1072px' },
-  { id: 'hi', name: 'Hindi', icon: '-1px -2245px' },
-  { id: 'es', name: 'Spanish', icon: '-1px -1480px' },
-  { id: 'fr', name: 'French', icon: '-1px -324px' },
-  { id: 'ar', name: 'العربية', icon: '-1px -52px' },
-  { id: 'pt', name: 'Portuguese', icon: '-1px -664px' },
-  { id: 'de', name: 'German', icon: '-1px -3452px' },
-  { id: 'ja', name: 'Japanese', icon: '-1px -528px' },
-  { id: 'ko', name: 'Korean', icon: '-1px -3078px' },
-  { id: 'it', name: 'Italian', icon: '-1px -154px' },
-  { id: 'tr', name: 'Turkish', icon: '-1px -2126px' },
-  { id: 'vi', name: 'Vietnamese', icon: '-1px -1259px' },
-  { id: 'bn', name: 'Bengali', icon: '-1px -2364px' },
-  { id: 'pl', name: 'Polish', icon: '-1px -1514px' },
-  { id: 'fa', name: 'Persian', icon: '-1px -2738px' },
-  { id: 'sv', name: 'Swedish', icon: '-1px -494px' },
-  { id: 'ms', name: 'Malay', icon: '-1px -2517px' },
-  { id: 'uk', name: 'Ukrainian', icon: '-1px -2721px' },
-  { id: 'no', name: 'Norwegian', icon: '-1px -1089px' },
-  { id: 'ro', name: 'Romanian', icon: '-1px -885px' },
-  { id: 'th', name: 'Thai', icon: '-1px -1242px' },
-  { id: 'fi', name: 'Finnish', icon: '-1px -2568px' },
-  { id: 'cs', name: 'Czech', icon: '-1px -3095px' },
-  { id: 'el', name: 'Greek', icon: '-1px -188px' },
-  { id: 'nl', name: 'Dutch', icon: '-1px -1888px' },
-  { id: 'da', name: 'Danish', icon: '-1px -1820px' },
-  { id: 'hu', name: 'Hungarian', icon: '-1px -902px' },
-  { id: 'bg', name: 'Bulgarian', icon: '-1px -3537px' },
-  { id: 'et', name: 'Estonian', icon: '-1px -3333px' },
-  { id: 'lt', name: 'Lithuanian', icon: '-1px -1446px' },
-  { id: 'lv', name: 'Latvian', icon: '-1px -2619px' },
-  { id: 'sk', name: 'Slovak', icon: '-1px -3044px' },
-  { id: 'sl', name: 'Slovenian', icon: '-1px -1582px' },
-  { id: 'sr', name: 'Serbian', icon: '-1px -3401px' },
-  { id: 'id', name: 'Indonesian', icon: '-1px -2653px' },
-  { id: 'ur', name: 'Urdu', icon: '-1px -2245px' },
-  { id: 'ta', name: 'Tamil', icon: '-1px -2245px' },
-  { id: 'te', name: 'Telugu', icon: '-1px -2245px' },
-  { id: 'ml', name: 'Malayalam', icon: '-1px -2245px' },
-  { id: 'mr', name: 'Marathi', icon: '-1px -2245px' },
-  { id: 'kn', name: 'Kannada', icon: 'url(https://github.com/Tybascript1234/Languag/blob/main/image/Kannada.png?raw=true)', isImage: true },
-  { id: 'az', name: 'Azerbaijani', icon: '-1px -1599px' },
-  { id: 'am', name: 'Amharic', icon: '-1px -3367px' },
-  { id: 'kk', name: 'Kazakh', icon: '-1px -1565px' },
-  { id: 'my', name: 'Burmese', icon: '-1px -18px' },
-  { id: 'si', name: 'Sinhala', icon: '-1px -3622px' },
-  // 30 لغة إضافية
-  { id: 'af', name: 'Afrikaans', icon: '-1px -35px' },
-  { id: 'sq', name: 'Albanian', icon: '-1px -69px' },
-  { id: 'hy', name: 'Armenian', icon: '-1px -103px' },
-  { id: 'eu', name: 'Basque', icon: '-1px -137px' },
-  { id: 'be', name: 'Belarusian', icon: '-1px -171px' },
-  { id: 'bs', name: 'Bosnian', icon: '-1px -205px' },
-  { id: 'ca', name: 'Catalan', icon: '-1px -239px' },
-  { id: 'hr', name: 'Croatian', icon: '-1px -273px' },
-  { id: 'eo', name: 'Esperanto', icon: '-1px -307px' },
-  { id: 'tl', name: 'Filipino', icon: '-1px -341px' },
-  { id: 'gl', name: 'Galician', icon: '-1px -375px' },
-  { id: 'ka', name: 'Georgian', icon: '-1px -409px' },
-  { id: 'gu', name: 'Gujarati', icon: '-1px -443px' },
-  { id: 'ht', name: 'Haitian Creole', icon: '-1px -477px' },
-  { id: 'ha', name: 'Hausa', icon: '-1px -511px' },
-  { id: 'is', name: 'Icelandic', icon: '-1px -545px' },
-  { id: 'ig', name: 'Igbo', icon: '-1px -579px' },
-  { id: 'ga', name: 'Irish', icon: '-1px -613px' },
-  { id: 'jw', name: 'Javanese', icon: '-1px -647px' },
-  { id: 'km', name: 'Khmer', icon: '-1px -681px' },
-  { id: 'ku', name: 'Kurdish', icon: '-1px -715px' },
-  { id: 'ky', name: 'Kyrgyz', icon: '-1px -749px' },
-  { id: 'lo', name: 'Lao', icon: '-1px -783px' },
-  { id: 'la', name: 'Latin', icon: '-1px -817px' },
-  { id: 'lb', name: 'Luxembourgish', icon: '-1px -851px' },
-  { id: 'mk', name: 'Macedonian', icon: '-1px -885px' },
-  { id: 'mg', name: 'Malagasy', icon: '-1px -919px' },
-  { id: 'mt', name: 'Maltese', icon: '-1px -953px' },
-  { id: 'mi', name: 'Maori', icon: '-1px -987px' },
-  { id: 'mn', name: 'Mongolian', icon: '-1px -1021px' },
-  { id: 'ne', name: 'Nepali', icon: '-1px -1055px' },
-  // دفعة ثانية من اللغات
-  { id: 'ps', name: 'Pashto', icon: '-1px -1089px' },
-  { id: 'pa', name: 'Punjabi', icon: '-1px -1123px' },
-  { id: 'qu', name: 'Quechua', icon: '-1px -1157px' },
-  { id: 'rw', name: 'Kinyarwanda', icon: '-1px -1191px' },
-  { id: 'sm', name: 'Samoan', icon: '-1px -1225px' },
-  { id: 'gd', name: 'Scottish Gaelic', icon: '-1px -1259px' },
-  { id: 'sn', name: 'Shona', icon: '-1px -1293px' },
-  { id: 'sd', name: 'Sindhi', icon: '-1px -1327px' },
-  { id: 'so', name: 'Somali', icon: '-1px -1361px' },
-  { id: 'su', name: 'Sundanese', icon: '-1px -1395px' },
-  { id: 'tg', name: 'Tajik', icon: '-1px -1429px' },
-  { id: 'tt', name: 'Tatar', icon: '-1px -1463px' },
-  { id: 'ti', name: 'Tigrinya', icon: '-1px -1497px' },
-  { id: 'tk', name: 'Turkmen', icon: '-1px -1531px' },
-  { id: 'ug', name: 'Uyghur', icon: '-1px -1565px' },
-  { id: 'uz', name: 'Uzbek', icon: '-1px -1599px' },
-  { id: 'cy', name: 'Welsh', icon: '-1px -1633px' },
-  { id: 'xh', name: 'Xhosa', icon: '-1px -1667px' },
-  { id: 'yi', name: 'Yiddish', icon: '-1px -1701px' },
-  { id: 'yo', name: 'Yoruba', icon: '-1px -1735px' },
-  { id: 'zu', name: 'Zulu', icon: '-1px -1769px' },
-  { id: 'ny', name: 'Chichewa', icon: '-1px -1803px' },
-  { id: 'ce', name: 'Chechen', icon: '-1px -1837px' },
-  { id: 'co', name: 'Corsican', icon: '-1px -1871px' },
-  { id: 'cr', name: 'Cree', icon: '-1px -1905px' },
-  { id: 'dv', name: 'Dhivehi', icon: '-1px -1939px' },
-  { id: 'ee', name: 'Ewe', icon: '-1px -1973px' },
-  { id: 'fj', name: 'Fijian', icon: '-1px -2007px' },
-  { id: 'kl', name: 'Kalaallisut', icon: '-1px -2041px' },
-  { id: 'ln', name: 'Lingala', icon: '-1px -2075px' },
-  { id: 'sg', name: 'Sango', icon: '-1px -2109px' },
-];
-
-// دالة إنشاء الأزرار ديناميكياً
-function renderTranslationButtons() {
-  const container = document.getElementById('translation_buttons');
-  container.innerHTML = '';
-  languages.forEach(lang => {
-    const btn = document.createElement('button');
-    btn.id = 'btn_' + lang.id.replace('-', '_');
-    btn.className = 'Translate-div notranslate Wave-cloud' + (['en', 'ar'].includes(lang.id) ? '' : ' Ex');
-    btn.setAttribute('data-lang', lang.id);
-    btn.setAttribute('onclick', `selectLanguage('${lang.id}')`);
-    btn.innerHTML = '<la></la>';
-    const iconDiv = document.createElement('div');
-    iconDiv.className = 'Fy0Xbe';
-    iconDiv.setAttribute('aria-hidden', 'true');
-    if (lang.isImage) {
-      iconDiv.style.backgroundImage = lang.icon;
-      iconDiv.style.backgroundSize = 'cover';
-    } else {
-      iconDiv.style.backgroundPosition = lang.icon;
-    }
-    btn.appendChild(iconDiv);
-    const a = document.createElement('a');
-    a.innerText = lang.name;
-    btn.appendChild(a);
-    container.appendChild(btn);
-  });
-}
-document.addEventListener('DOMContentLoaded', renderTranslationButtons);
-
-// باقي كودك كما هو (دوال الترجمة - البحث - التظليل - الريبل ...)
-
-
-// Initialize Google Translate Element
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'en'
-    }, 'google_translate_element');
-
-    // Listen for language change events
-    var interval = setInterval(function() {
-        if (typeof google !== 'undefined' && google.translate.TranslateElement) {
-            clearInterval(interval);
-            
-            // Add event listener for language change
-            var selectElement = document.querySelector('.goog-te-combo');
-            if (selectElement) {
-                selectElement.addEventListener('change', function() {
-                    checkLanguageDirection();
-                });
-            }
-            
-            // Check direction on initial load
-            checkLanguageDirection();
-        }
-    }, 100);
-}
-
-// Check language and set text direction
-function checkLanguageDirection() {
-    var currentLang = document.querySelector('.goog-te-combo').value;
-    var inputElements = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea, .tran-rtl, .tran-rtl123');
-
-    if (currentLang === 'ar') { // Arabic
-        inputElements.forEach(function(element) {
-            element.style.direction = 'rtl';
-            element.style.textAlign = 'right';
-            if (element.type === 'password') {
-                element.style.unicodeBidi = 'bidi-override';
-            }
-        });
-    } else { // Other languages
-        inputElements.forEach(function(element) {
-            element.style.direction = 'ltr';
-            element.style.textAlign = 'left';
-            if (element.type === 'password') {
-                element.style.unicodeBidi = 'normal';
-            }
-        });
-    }
-}
-
-
-// Track the currently active button
-let activeButton = null;
-
-// Select language and update display based on the selected language
-function selectLanguage(langCode) {
-    var selectElement = document.querySelector('.goog-te-combo');
-    if (selectElement) {
-        selectElement.value = langCode;
-        selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
-
-        // Hide Google Translate tooltip on language selection
-        var tooltipElement = document.getElementById('google_translate_tooltip');
-        if (tooltipElement) {
-            tooltipElement.style.display = 'none';
-            tooltipElement.style.visibility = 'hidden';
-        }
-
-        // Update selected language display
-        var selectedLanguageDiv = document.getElementById('selected_language_display');
-        if (selectedLanguageDiv) {
-            selectedLanguageDiv.textContent = getLanguageName(langCode);
-        }
-
-        // Change button background color and store the selected language in localStorage
-        updateButtonBackground(langCode);
-        localStorage.setItem('selectedLanguage', langCode);
-        
-        // Check and set direction after language change
-        checkLanguageDirection();
-    }
-}
-
-// Update button background color and handle SVG icon
-function updateButtonBackground(langCode) {
-    const buttons = document.querySelectorAll('#translation_buttons button');
-
-    // إزالة الكلاس من جميع الأزرار وإزالة أي SVG سابق
-    buttons.forEach(button => {
-        button.classList.remove('selected-lang-button');
-
-        const svgIcon = button.querySelector('.check-lang');
-        if (svgIcon) {
-            svgIcon.remove();
-        }
-    });
-
-    // إضافة الكلاس إلى الزر المحدد بناءً على langCode
-    const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
-    if (selectedButton) {
-        selectedButton.classList.add('selected-lang-button');
-        activeButton = selectedButton;
-
-        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("class", "check-lang");
-        svg.setAttribute("height", "24px");
-        svg.setAttribute("viewBox", "0 -960 960 960");
-        svg.setAttribute("width", "24px");
-        svg.setAttribute("fill", "#5f6368");
-        svg.innerHTML = `<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>`;
-        selectedButton.appendChild(svg);
-    }
-}
-
-// Restore the last selected language and button background after page reload
-function restoreLastSelectedLanguage() {
-    const savedLangCode = localStorage.getItem('selectedLanguage');
-    if (savedLangCode) {
-        const interval = setInterval(function () {
-            const selectElement = document.querySelector('.goog-te-combo');
-            if (selectElement) {
-                clearInterval(interval);
-                selectLanguage(savedLangCode);
-                updateButtonBackground(savedLangCode);
-            }
-        }, 100); // تحقق كل 100 مللي ثانية حتى تحميل الترجمة
-    }
-}
-
-// Search functionality for translation buttons
-function searchLanguage() {
-    const searchInputField = document.getElementById('button_search_input');
-    const translationButtons = document.querySelectorAll('#translation_buttons button');
-    const noResultsMessageDiv = document.getElementById('no_results_message');
-    const searchQueryDisplay = document.getElementById('searched_query_display');
-
-    const searchTerm = searchInputField.value.toLowerCase();
-    let hasResults = false;
-
-    // Loop through buttons and display/hide based on search term
-    translationButtons.forEach(button => {
-        const buttonName = button.textContent.toLowerCase();
-        if (buttonName.includes(searchTerm)) {
-            button.style.display = 'flex';
-            hasResults = true;
-        } else {
-            button.style.display = 'none';
-        }
-    });
-
-    // Handle display of no results message and button visibility
-    if (searchTerm === '') {
-        translationButtons.forEach(button => {
-            button.style.display = 'flex';
-        });
-        noResultsMessageDiv.style.display = 'none';
-    } else if (!hasResults) {
-        noResultsMessageDiv.style.display = 'block';
-        searchQueryDisplay.textContent = searchTerm;
-    } else {
-        noResultsMessageDiv.style.display = 'none';
-    }
-}
-
-// Initialize functionality on page load
-window.onload = function () {
-    setTimeout(() => {
-        googleTranslateElementInit(); // أولًا: حمّل ويدجت الترجمة
-        restoreLastSelectedLanguage(); // ثم طبّق اللغة المختارة
-    }, 500); // يمكن تعديل الوقت حسب سرعة الإنترنت
-};
+    <div id="google_translate_element"></div>
+    <div class="links-Tran links-a">
+          <div class="links-Translate-div dide xox" id="bbb1">
+            <div class="links-Translate-search"><label id="ffrrelang12345" for="button_search_input"><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24"><path d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"/></svg></label><input type="search" id="button_search_input" oninput="searchLanguage()"  placeholder="Search Languages"></div>
+              <div id="translation_buttons">
+                <!-- الأزرار المضافة يدوياً -->
+                <button id="btn_en" class="Translate-div notranslate Wave-cloud" data-lang="en" onclick="selectLanguage('en')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -69px;"></div><a>English</a></button>
+                <button id="btn_zh_CN" class="Translate-div notranslate Wave-cloud Ex" data-lang="zh-CN" onclick="selectLanguage('zh-CN')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1072px;"></div><a>Chinese</a></button>
+                <button id="btn_hi" class="Translate-div notranslate Wave-cloud Ex" data-lang="hi" onclick="selectLanguage('hi')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2245px;"></div><a>Hindi</a></button>
+                <button id="btn_es" class="Translate-div notranslate Wave-cloud Ex" data-lang="es" onclick="selectLanguage('es')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1480px;"></div><a>Spanish</a></button>
+                <button id="btn_fr" class="Translate-div notranslate Wave-cloud Ex" data-lang="fr" onclick="selectLanguage('fr')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -324px;"></div><a>French</a></button>
+                <button id="btn_ar" class="Translate-div notranslate Wave-cloud" data-lang="ar" onclick="selectLanguage('ar')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -52px;"></div><a>العربية</a></button>
+                <button id="btn_pt" class="Translate-div notranslate Wave-cloud Ex" data-lang="pt" onclick="selectLanguage('pt')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -664px;"></div><a>Portuguese</a></button>
+                <button id="btn_de" class="Translate-div notranslate Wave-cloud Ex" data-lang="de" onclick="selectLanguage('de')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -3452px;"></div><a>German</a></button>
+                <button id="btn_ja" class="Translate-div notranslate Wave-cloud Ex" data-lang="ja" onclick="selectLanguage('ja')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -528px;"></div><a>Japanese</a></button>
+                <button id="btn_ko" class="Translate-div notranslate Wave-cloud Ex" data-lang="ko" onclick="selectLanguage('ko')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -3078px;"></div><a>Korean</a></button>
+                <button id="btn_it" class="Translate-div notranslate Wave-cloud Ex" data-lang="it" onclick="selectLanguage('it')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -154px;"></div><a>Italian</a></button>
+                <button id="btn_tr" class="Translate-div notranslate Wave-cloud Ex" data-lang="tr" onclick="selectLanguage('tr')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2126px;"></div><a>Turkish</a></button>
+                <button id="btn_vi" class="Translate-div notranslate Wave-cloud Ex" data-lang="vi" onclick="selectLanguage('vi')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1259px;"></div><a>Vietnamese</a></button>
+                <button id="btn_bn" class="Translate-div notranslate Wave-cloud Ex" data-lang="bn" onclick="selectLanguage('bn')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2364px;"></div><a>Bengali</a></button>
+                <button id="btn_pl" class="Translate-div notranslate Wave-cloud Ex" data-lang="pl" onclick="selectLanguage('pl')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1514px;"></div><a>Polish</a></button>
+                <button id="btn_fa" class="Translate-div notranslate Wave-cloud Ex" data-lang="fa" onclick="selectLanguage('fa')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2738px;"></div><a>Persian</a></button>
+                <button id="btn_sv" class="Translate-div notranslate Wave-cloud Ex" data-lang="sv" onclick="selectLanguage('sv')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -494px;"></div><a>Swedish</a></button>
+                <button id="btn_ms" class="Translate-div notranslate Wave-cloud Ex" data-lang="ms" onclick="selectLanguage('ms')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2517px;"></div><a>Malay</a></button>
+                <button id="btn_uk" class="Translate-div notranslate Wave-cloud Ex" data-lang="uk" onclick="selectLanguage('uk')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2721px;"></div><a>Ukrainian</a></button>
+                <button id="btn_no" class="Translate-div notranslate Wave-cloud Ex" data-lang="no" onclick="selectLanguage('no')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1089px;"></div><a>Norwegian</a></button>
+                <button id="btn_ro" class="Translate-div notranslate Wave-cloud Ex" data-lang="ro" onclick="selectLanguage('ro')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -885px;"></div><a>Romanian</a></button>
+                <button id="btn_th" class="Translate-div notranslate Wave-cloud Ex" data-lang="th" onclick="selectLanguage('th')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1242px;"></div><a>Thai</a></button>
+                <button id="btn_fi" class="Translate-div notranslate Wave-cloud Ex" data-lang="fi" onclick="selectLanguage('fi')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2568px;"></div><a>Finnish</a></button>
+                <button id="btn_cs" class="Translate-div notranslate Wave-cloud Ex" data-lang="cs" onclick="selectLanguage('cs')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -3095px;"></div><a>Czech</a></button>
+                <button id="btn_el" class="Translate-div notranslate Wave-cloud Ex" data-lang="el" onclick="selectLanguage('el')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -188px;"></div><a>Greek</a></button>
+                <button id="btn_nl" class="Translate-div notranslate Wave-cloud Ex" data-lang="nl" onclick="selectLanguage('nl')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1888px;"></div><a>Dutch</a></button>
+                <button id="btn_da" class="Translate-div notranslate Wave-cloud Ex" data-lang="da" onclick="selectLanguage('da')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1820px;"></div><a>Danish</a></button>
+                <button id="btn_hu" class="Translate-div notranslate Wave-cloud Ex" data-lang="hu" onclick="selectLanguage('hu')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -902px;"></div><a>Hungarian</a></button>
+                <button id="btn_bg" class="Translate-div notranslate Wave-cloud Ex" data-lang="bg" onclick="selectLanguage('bg')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -3537px;"></div><a>Bulgarian</a></button>
+                <button id="btn_et" class="Translate-div notranslate Wave-cloud Ex" data-lang="et" onclick="selectLanguage('et')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -3333px;"></div><a>Estonian</a></button>
+                <button id="btn_lt" class="Translate-div notranslate Wave-cloud Ex" data-lang="lt" onclick="selectLanguage('lt')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1446px;"></div><a>Lithuanian</a></button>
+                <button id="btn_lv" class="Translate-div notranslate Wave-cloud Ex" data-lang="lv" onclick="selectLanguage('lv')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2619px;"></div><a>Latvian</a></button>
+                <button id="btn_sk" class="Translate-div notranslate Wave-cloud Ex" data-lang="sk" onclick="selectLanguage('sk')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -3044px;"></div><a>Slovak</a></button>
+                <button id="btn_sl" class="Translate-div notranslate Wave-cloud Ex" data-lang="sl" onclick="selectLanguage('sl')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1582px;"></div><a>Slovenian</a></button>
+                <button id="btn_sr" class="Translate-div notranslate Wave-cloud Ex" data-lang="sr" onclick="selectLanguage('sr')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -3401px;"></div><a>Serbian</a></button>
+                <button id="btn_id" class="Translate-div notranslate Wave-cloud Ex" data-lang="id" onclick="selectLanguage('id')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2653px;"></div><a>Indonesian</a></button>
+                <button id="btn_ur" class="Translate-div notranslate Wave-cloud Ex" data-lang="ur" onclick="selectLanguage('ur')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2245px;"></div><a>Urdu</a></button>
+                <button id="btn_ta" class="Translate-div notranslate Wave-cloud Ex" data-lang="ta" onclick="selectLanguage('ta')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2245px;"></div><a>Tamil</a></button>
+                <button id="btn_te" class="Translate-div notranslate Wave-cloud Ex" data-lang="te" onclick="selectLanguage('te')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2245px;"></div><a>Telugu</a></button>
+                <button id="btn_ml" class="Translate-div notranslate Wave-cloud Ex" data-lang="ml" onclick="selectLanguage('ml')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2245px;"></div><a>Malayalam</a></button>
+                <button id="btn_mr" class="Translate-div notranslate Wave-cloud Ex" data-lang="mr" onclick="selectLanguage('mr')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2245px;"></div><a>Marathi</a></button>
+                <button id="btn_kn" class="Translate-div notranslate Wave-cloud Ex" data-lang="kn" onclick="selectLanguage('kn')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-image: url(https://github.com/Tybascript1234/Languag/blob/main/image/Kannada.png?raw=true); background-size: cover;"></div><a>Kannada</a></button>
+                <button id="btn_az" class="Translate-div notranslate Wave-cloud Ex" data-lang="az" onclick="selectLanguage('az')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1599px;"></div><a>Azerbaijani</a></button>
+                <button id="btn_am" class="Translate-div notranslate Wave-cloud Ex" data-lang="am" onclick="selectLanguage('am')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -3367px;"></div><a>Amharic</a></button>
+                <button id="btn_kk" class="Translate-div notranslate Wave-cloud Ex" data-lang="kk" onclick="selectLanguage('kk')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1565px;"></div><a>Kazakh</a></button>
+                <button id="btn_my" class="Translate-div notranslate Wave-cloud Ex" data-lang="my" onclick="selectLanguage('my')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -18px;"></div><a>Burmese</a></button>
+                <button id="btn_si" class="Translate-div notranslate Wave-cloud Ex" data-lang="si" onclick="selectLanguage('si')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -3622px;"></div><a>Sinhala</a></button>
+                <button id="btn_af" class="Translate-div notranslate Wave-cloud Ex" data-lang="af" onclick="selectLanguage('af')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -35px;"></div><a>Afrikaans</a></button>
+                <button id="btn_sq" class="Translate-div notranslate Wave-cloud Ex" data-lang="sq" onclick="selectLanguage('sq')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -69px;"></div><a>Albanian</a></button>
+                <button id="btn_hy" class="Translate-div notranslate Wave-cloud Ex" data-lang="hy" onclick="selectLanguage('hy')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -103px;"></div><a>Armenian</a></button>
+                <button id="btn_eu" class="Translate-div notranslate Wave-cloud Ex" data-lang="eu" onclick="selectLanguage('eu')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -137px;"></div><a>Basque</a></button>
+                <button id="btn_be" class="Translate-div notranslate Wave-cloud Ex" data-lang="be" onclick="selectLanguage('be')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -171px;"></div><a>Belarusian</a></button>
+                <button id="btn_bs" class="Translate-div notranslate Wave-cloud Ex" data-lang="bs" onclick="selectLanguage('bs')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -205px;"></div><a>Bosnian</a></button>
+                <button id="btn_ca" class="Translate-div notranslate Wave-cloud Ex" data-lang="ca" onclick="selectLanguage('ca')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -239px;"></div><a>Catalan</a></button>
+                <button id="btn_hr" class="Translate-div notranslate Wave-cloud Ex" data-lang="hr" onclick="selectLanguage('hr')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -273px;"></div><a>Croatian</a></button>
+                <button id="btn_eo" class="Translate-div notranslate Wave-cloud Ex" data-lang="eo" onclick="selectLanguage('eo')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -307px;"></div><a>Esperanto</a></button>
+                <button id="btn_tl" class="Translate-div notranslate Wave-cloud Ex" data-lang="tl" onclick="selectLanguage('tl')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -341px;"></div><a>Filipino</a></button>
+                <button id="btn_gl" class="Translate-div notranslate Wave-cloud Ex" data-lang="gl" onclick="selectLanguage('gl')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -375px;"></div><a>Galician</a></button>
+                <button id="btn_ka" class="Translate-div notranslate Wave-cloud Ex" data-lang="ka" onclick="selectLanguage('ka')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -409px;"></div><a>Georgian</a></button>
+                <button id="btn_gu" class="Translate-div notranslate Wave-cloud Ex" data-lang="gu" onclick="selectLanguage('gu')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -443px;"></div><a>Gujarati</a></button>
+                <button id="btn_ht" class="Translate-div notranslate Wave-cloud Ex" data-lang="ht" onclick="selectLanguage('ht')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -477px;"></div><a>Haitian Creole</a></button>
+                <button id="btn_ha" class="Translate-div notranslate Wave-cloud Ex" data-lang="ha" onclick="selectLanguage('ha')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -511px;"></div><a>Hausa</a></button>
+                <button id="btn_is" class="Translate-div notranslate Wave-cloud Ex" data-lang="is" onclick="selectLanguage('is')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -545px;"></div><a>Icelandic</a></button>
+                <button id="btn_ig" class="Translate-div notranslate Wave-cloud Ex" data-lang="ig" onclick="selectLanguage('ig')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -579px;"></div><a>Igbo</a></button>
+                <button id="btn_ga" class="Translate-div notranslate Wave-cloud Ex" data-lang="ga" onclick="selectLanguage('ga')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -613px;"></div><a>Irish</a></button>
+                <button id="btn_jw" class="Translate-div notranslate Wave-cloud Ex" data-lang="jw" onclick="selectLanguage('jw')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -647px;"></div><a>Javanese</a></button>
+                <button id="btn_km" class="Translate-div notranslate Wave-cloud Ex" data-lang="km" onclick="selectLanguage('km')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -681px;"></div><a>Khmer</a></button>
+                <button id="btn_ku" class="Translate-div notranslate Wave-cloud Ex" data-lang="ku" onclick="selectLanguage('ku')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -715px;"></div><a>Kurdish</a></button>
+                <button id="btn_ky" class="Translate-div notranslate Wave-cloud Ex" data-lang="ky" onclick="selectLanguage('ky')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -749px;"></div><a>Kyrgyz</a></button>
+                <button id="btn_lo" class="Translate-div notranslate Wave-cloud Ex" data-lang="lo" onclick="selectLanguage('lo')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -783px;"></div><a>Lao</a></button>
+                <button id="btn_la" class="Translate-div notranslate Wave-cloud Ex" data-lang="la" onclick="selectLanguage('la')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -817px;"></div><a>Latin</a></button>
+                <button id="btn_lb" class="Translate-div notranslate Wave-cloud Ex" data-lang="lb" onclick="selectLanguage('lb')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -851px;"></div><a>Luxembourgish</a></button>
+                <button id="btn_mk" class="Translate-div notranslate Wave-cloud Ex" data-lang="mk" onclick="selectLanguage('mk')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -885px;"></div><a>Macedonian</a></button>
+                <button id="btn_mg" class="Translate-div notranslate Wave-cloud Ex" data-lang="mg" onclick="selectLanguage('mg')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -919px;"></div><a>Malagasy</a></button>
+                <button id="btn_mt" class="Translate-div notranslate Wave-cloud Ex" data-lang="mt" onclick="selectLanguage('mt')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -953px;"></div><a>Maltese</a></button>
+                <button id="btn_mi" class="Translate-div notranslate Wave-cloud Ex" data-lang="mi" onclick="selectLanguage('mi')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -987px;"></div><a>Maori</a></button>
+                <button id="btn_mn" class="Translate-div notranslate Wave-cloud Ex" data-lang="mn" onclick="selectLanguage('mn')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1021px;"></div><a>Mongolian</a></button>
+                <button id="btn_ne" class="Translate-div notranslate Wave-cloud Ex" data-lang="ne" onclick="selectLanguage('ne')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1055px;"></div><a>Nepali</a></button>
+                <button id="btn_ps" class="Translate-div notranslate Wave-cloud Ex" data-lang="ps" onclick="selectLanguage('ps')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1089px;"></div><a>Pashto</a></button>
+                <button id="btn_pa" class="Translate-div notranslate Wave-cloud Ex" data-lang="pa" onclick="selectLanguage('pa')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1123px;"></div><a>Punjabi</a></button>
+                <button id="btn_qu" class="Translate-div notranslate Wave-cloud Ex" data-lang="qu" onclick="selectLanguage('qu')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1157px;"></div><a>Quechua</a></button>
+                <button id="btn_rw" class="Translate-div notranslate Wave-cloud Ex" data-lang="rw" onclick="selectLanguage('rw')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1191px;"></div><a>Kinyarwanda</a></button>
+                <button id="btn_sm" class="Translate-div notranslate Wave-cloud Ex" data-lang="sm" onclick="selectLanguage('sm')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1225px;"></div><a>Samoan</a></button>
+                <button id="btn_gd" class="Translate-div notranslate Wave-cloud Ex" data-lang="gd" onclick="selectLanguage('gd')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1259px;"></div><a>Scottish Gaelic</a></button>
+                <button id="btn_sn" class="Translate-div notranslate Wave-cloud Ex" data-lang="sn" onclick="selectLanguage('sn')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1293px;"></div><a>Shona</a></button>
+                <button id="btn_sd" class="Translate-div notranslate Wave-cloud Ex" data-lang="sd" onclick="selectLanguage('sd')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1327px;"></div><a>Sindhi</a></button>
+                <button id="btn_so" class="Translate-div notranslate Wave-cloud Ex" data-lang="so" onclick="selectLanguage('so')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1361px;"></div><a>Somali</a></button>
+                <button id="btn_su" class="Translate-div notranslate Wave-cloud Ex" data-lang="su" onclick="selectLanguage('su')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1395px;"></div><a>Sundanese</a></button>
+                <button id="btn_tg" class="Translate-div notranslate Wave-cloud Ex" data-lang="tg" onclick="selectLanguage('tg')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1429px;"></div><a>Tajik</a></button>
+                <button id="btn_tt" class="Translate-div notranslate Wave-cloud Ex" data-lang="tt" onclick="selectLanguage('tt')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1463px;"></div><a>Tatar</a></button>
+                <button id="btn_ti" class="Translate-div notranslate Wave-cloud Ex" data-lang="ti" onclick="selectLanguage('ti')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1497px;"></div><a>Tigrinya</a></button>
+                <button id="btn_tk" class="Translate-div notranslate Wave-cloud Ex" data-lang="tk" onclick="selectLanguage('tk')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1531px;"></div><a>Turkmen</a></button>
+                <button id="btn_ug" class="Translate-div notranslate Wave-cloud Ex" data-lang="ug" onclick="selectLanguage('ug')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1565px;"></div><a>Uyghur</a></button>
+                <button id="btn_uz" class="Translate-div notranslate Wave-cloud Ex" data-lang="uz" onclick="selectLanguage('uz')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1599px;"></div><a>Uzbek</a></button>
+                <button id="btn_cy" class="Translate-div notranslate Wave-cloud Ex" data-lang="cy" onclick="selectLanguage('cy')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1633px;"></div><a>Welsh</a></button>
+                <button id="btn_xh" class="Translate-div notranslate Wave-cloud Ex" data-lang="xh" onclick="selectLanguage('xh')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1667px;"></div><a>Xhosa</a></button>
+                <button id="btn_yi" class="Translate-div notranslate Wave-cloud Ex" data-lang="yi" onclick="selectLanguage('yi')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1701px;"></div><a>Yiddish</a></button>
+                <button id="btn_yo" class="Translate-div notranslate Wave-cloud Ex" data-lang="yo" onclick="selectLanguage('yo')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1735px;"></div><a>Yoruba</a></button>
+                <button id="btn_zu" class="Translate-div notranslate Wave-cloud Ex" data-lang="zu" onclick="selectLanguage('zu')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1769px;"></div><a>Zulu</a></button>
+                <button id="btn_ny" class="Translate-div notranslate Wave-cloud Ex" data-lang="ny" onclick="selectLanguage('ny')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1803px;"></div><a>Chichewa</a></button>
+                <button id="btn_ce" class="Translate-div notranslate Wave-cloud Ex" data-lang="ce" onclick="selectLanguage('ce')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1837px;"></div><a>Chechen</a></button>
+                <button id="btn_co" class="Translate-div notranslate Wave-cloud Ex" data-lang="co" onclick="selectLanguage('co')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1871px;"></div><a>Corsican</a></button>
+                <button id="btn_cr" class="Translate-div notranslate Wave-cloud Ex" data-lang="cr" onclick="selectLanguage('cr')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1905px;"></div><a>Cree</a></button>
+                <button id="btn_dv" class="Translate-div notranslate Wave-cloud Ex" data-lang="dv" onclick="selectLanguage('dv')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1939px;"></div><a>Dhivehi</a></button>
+                <button id="btn_ee" class="Translate-div notranslate Wave-cloud Ex" data-lang="ee" onclick="selectLanguage('ee')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -1973px;"></div><a>Ewe</a></button>
+                <button id="btn_fj" class="Translate-div notranslate Wave-cloud Ex" data-lang="fj" onclick="selectLanguage('fj')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2007px;"></div><a>Fijian</a></button>
+                <button id="btn_kl" class="Translate-div notranslate Wave-cloud Ex" data-lang="kl" onclick="selectLanguage('kl')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2041px;"></div><a>Kalaallisut</a></button>
+                <button id="btn_ln" class="Translate-div notranslate Wave-cloud Ex" data-lang="ln" onclick="selectLanguage('ln')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2075px;"></div><a>Lingala</a></button>
+                <button id="btn_sg" class="Translate-div notranslate Wave-cloud Ex" data-lang="sg" onclick="selectLanguage('sg')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2109px;"></div><a>Sango</a></button>
+              </div>
+              <div id="no_results_message" class="tran-rtl123" style="display:none;font-family: system-ui;padding: 0px 14px;font-size: 14px;color: rgb(142, 142, 142);overflow-wrap: break-word;">No results found for <div>"<span id="searched_query_display" style="color: #1d1d1d;margin: 0 3px;font-weight: 600;"></span>"</div></div>
+            <span class="notranslate" style="position: absolute;bottom: 0;right: 0;margin: 8px 12px;opacity: .2;font-size: 13px;">Egypt [100] langs</span>
+            <div class="reload-12345-lang"></div>
+          </div>
+      </div>
+  
+  <script>
+  // يمكنك الآن إزالة دالة renderTranslationButtons() لأن الأزرار تمت إضافتها يدوياً
+  
+  // باقي كودك كما هو (دوال الترجمة - البحث - التظليل - الريبل ...)
+  
+  
+  // Initialize Google Translate Element
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+          pageLanguage: 'en'
+      }, 'google_translate_element');
+  
+      // Listen for language change events
+      var interval = setInterval(function() {
+          if (typeof google !== 'undefined' && google.translate.TranslateElement) {
+              clearInterval(interval);
+              
+              // Add event listener for language change
+              var selectElement = document.querySelector('.goog-te-combo');
+              if (selectElement) {
+                  selectElement.addEventListener('change', function() {
+                      checkLanguageDirection();
+                  });
+              }
+              
+              // Check direction on initial load
+              checkLanguageDirection();
+          }
+      }, 100);
+  }
+  
+  // Check language and set text direction
+  function checkLanguageDirection() {
+      var currentLang = document.querySelector('.goog-te-combo').value;
+      var inputElements = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="search"], textarea, .tran-rtl, .tran-rtl123');
+  
+      if (currentLang === 'ar') { // Arabic
+          inputElements.forEach(function(element) {
+              element.style.direction = 'rtl';
+              element.style.textAlign = 'right';
+              if (element.type === 'password') {
+                  element.style.unicodeBidi = 'bidi-override';
+              }
+          });
+      } else { // Other languages
+          inputElements.forEach(function(element) {
+              element.style.direction = 'ltr';
+              element.style.textAlign = 'left';
+              if (element.type === 'password') {
+                  element.style.unicodeBidi = 'normal';
+              }
+          });
+      }
+  }
+  
+  
+  // Track the currently active button
+  let activeButton = null;
+  
+  // Select language and update display based on the selected language
+  function selectLanguage(langCode) {
+      var selectElement = document.querySelector('.goog-te-combo');
+      if (selectElement) {
+          selectElement.value = langCode;
+          selectElement.dispatchEvent(new Event('change', { 'bubbles': true }));
+  
+          // Hide Google Translate tooltip on language selection
+          var tooltipElement = document.getElementById('google_translate_tooltip');
+          if (tooltipElement) {
+              tooltipElement.style.display = 'none';
+              tooltipElement.style.visibility = 'hidden';
+          }
+  
+          // Update selected language display
+          var selectedLanguageDiv = document.getElementById('selected_language_display');
+          if (selectedLanguageDiv) {
+              selectedLanguageDiv.textContent = getLanguageName(langCode);
+          }
+  
+          // Change button background color and store the selected language in localStorage
+          updateButtonBackground(langCode);
+          localStorage.setItem('selectedLanguage', langCode);
+          
+          // Check and set direction after language change
+          checkLanguageDirection();
+      }
+  }
+  
+  // Update button background color and handle SVG icon
+  function updateButtonBackground(langCode) {
+      const buttons = document.querySelectorAll('#translation_buttons button');
+  
+      // إزالة الكلاس من جميع الأزرار وإزالة أي SVG سابق
+      buttons.forEach(button => {
+          button.classList.remove('selected-lang-button');
+  
+          const svgIcon = button.querySelector('.check-lang');
+          if (svgIcon) {
+              svgIcon.remove();
+          }
+      });
+  
+      // إضافة الكلاس إلى الزر المحدد بناءً على langCode
+      const selectedButton = Array.from(buttons).find(button => button.getAttribute('data-lang') === langCode);
+      if (selectedButton) {
+          selectedButton.classList.add('selected-lang-button');
+          activeButton = selectedButton;
+  
+          const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          svg.setAttribute("class", "check-lang");
+          svg.setAttribute("height", "24px");
+          svg.setAttribute("viewBox", "0 -960 960 960");
+          svg.setAttribute("width", "24px");
+          svg.setAttribute("fill", "#5f6368");
+          svg.innerHTML = `<path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>`;
+          selectedButton.appendChild(svg);
+      }
+  }
+  
+  // Restore the last selected language and button background after page reload
+  function restoreLastSelectedLanguage() {
+      const savedLangCode = localStorage.getItem('selectedLanguage');
+      if (savedLangCode) {
+          const interval = setInterval(function () {
+              const selectElement = document.querySelector('.goog-te-combo');
+              if (selectElement) {
+                  clearInterval(interval);
+                  selectLanguage(savedLangCode);
+                  updateButtonBackground(savedLangCode);
+              }
+          }, 100); // تحقق كل 100 مللي ثانية حتى تحميل الترجمة
+      }
+  }
+  
+  // Search functionality for translation buttons
+  function searchLanguage() {
+      const searchInputField = document.getElementById('button_search_input');
+      const translationButtons = document.querySelectorAll('#translation_buttons button');
+      const noResultsMessageDiv = document.getElementById('no_results_message');
+      const searchQueryDisplay = document.getElementById('searched_query_display');
+  
+      const searchTerm = searchInputField.value.toLowerCase();
+      let hasResults = false;
+  
+      // Loop through buttons and display/hide based on search term
+      translationButtons.forEach(button => {
+          const buttonName = button.textContent.toLowerCase();
+          if (buttonName.includes(searchTerm)) {
+              button.style.display = 'flex';
+              hasResults = true;
+          } else {
+              button.style.display = 'none';
+          }
+      });
+  
+      // Handle display of no results message and button visibility
+      if (searchTerm === '') {
+          translationButtons.forEach(button => {
+              button.style.display = 'flex';
+          });
+          noResultsMessageDiv.style.display = 'none';
+      } else if (!hasResults) {
+          noResultsMessageDiv.style.display = 'block';
+          searchQueryDisplay.textContent = searchTerm;
+      } else {
+          noResultsMessageDiv.style.display = 'none';
+      }
+  }
+  
+  // Initialize functionality on page load
+  window.onload = function () {
+      setTimeout(() => {
+          googleTranslateElementInit(); // أولًا: حمّل ويدجت الترجمة
+          restoreLastSelectedLanguage(); // ثم طبّق اللغة المختارة
+      }, 500); // يمكن تعديل الوقت حسب سرعة الإنترنت
+  };
 
 
 
