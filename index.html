@@ -348,13 +348,23 @@ body .selected-lang-button:focus {
 body .reload-12345-lang {
 
 }
+body #ffrrelang12345 {
+    display: flex;
+    position: relative;
+    z-index: 5;
+    width: max-content;
+    height: max-content;
+}
+body #ffrrelang12345:hover {
+  background: #0000;
+}
     </style>
 </head>
 <body>
   <div id="google_translate_element"></div>
    <div class="links-Tran links-a">
         <div class="links-Translate-div dide xox" id="bbb1">
-          <div class="links-Translate-search"><label for="button_search_input" style="display: flex;position: relative;z-index: 5;"><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24"><path d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"/></svg></label><input type="search" id="button_search_input" oninput="searchLanguage()"  placeholder="Search Languages"></div>
+          <div class="links-Translate-search"><label id="ffrrelang12345" for="button_search_input"><svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24"><path d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"/></svg></label><input type="search" id="button_search_input" oninput="searchLanguage()"  placeholder="Search Languages"></div>
             <div id="translation_buttons"></div>
             <div id="no_results_message" class="tran-rtl123" style="display:none;font-family: system-ui;padding: 0px 14px;font-size: 14px;color: rgb(142, 142, 142);overflow-wrap: break-word;">No results found for <div>"<span id="searched_query_display" style="color: #1d1d1d;margin: 0 3px;font-weight: 600;"></span>"</div></div>
           <span class="notranslate" style="position: absolute;bottom: 0;right: 0;margin: 8px 12px;opacity: .2;font-size: 13px;">Egypt [100] langs</span>
