@@ -354,6 +354,27 @@
         body #ffrrelang12345:hover {
             background: #0000;
         }
+        body vvvvvv123 {
+            position: absolute;
+            z-index: 10;
+            bottom: 0;
+            right: -102px;
+            margin: 8px 12px;
+            opacity: .2;
+            font-size: 13px;
+            text-shadow: -101px 0px 0px #000000;
+        }
+        body lang_count {
+            
+        }
+        body #searched_query_display {
+            user-select: all;
+            color: #1d1d1d;
+            margin: 0 3px;
+            font-weight: 600;
+            position: relative;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
@@ -485,9 +506,9 @@
                 <button id="btn_sg" class="Translate-div notranslate Wave-button Ex" data-lang="sg" onclick="selectLanguage('sg')"><la></la><div class="Fy0Xbe" aria-hidden="true" style="background-position: -1px -2109px;"></div><a>Sango</a></button>
             </div>
             <div id="no_results_message" class="tran-rtl123" style="display:none;font-family: system-ui;padding: 0px 14px;font-size: 14px;color: rgb(142, 142, 142);overflow-wrap: break-word;">
-                No results found for <div>"<span id="searched_query_display" style="user-select: text; color: #1d1d1d; margin: 0 3px; font-weight: 600; position: relative; z-index: 10;"></span>"</div>
+                No results found for <div>"<span id="searched_query_display"></span>"</div>
             </div>
-            <span class="notranslate" style="position: absolute; z-index: 10; bottom: 0; right: -102px; margin: 8px 12px; opacity: .2; font-size: 13px; text-shadow: -101px 0px 0px #000000;">EGB  [<span id="lang_count"></span>] langs</span>
+            <span class="notranslate vvvvvv123">EGB  [<span class="lang_count">109</span>] langs</span>
             <div class="reload-12345-lang"></div>
         </div>
     </div>
@@ -787,4 +808,5 @@
     </script>
 </body>
 </html>
+
 
